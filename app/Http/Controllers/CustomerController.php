@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Throwable;
 
 class CustomerController extends Controller
 {
@@ -53,11 +54,39 @@ class CustomerController extends Controller
             $img_url = $img_path.$img_full_name;
             $img->move($img_path,$img_full_name);
             $data['photo']=$img_url;
-            Customer::create($data);
-            return Redirect()->back()->with('message','Insert Successfull!');
+            $customer = Customer::create($data);
+            try{
+                if($customer){
+                    $notification = array(
+                        'message'=>'Customer Added Successfull!',
+                        'alert-type'=>'success',
+                    );
+                    return Redirect()->back()->with($notification);
+                }
+            }catch(Throwable $exception){
+                $notification = array(
+                    'message'=>'Somthing is Wrong!',
+                    'alert-type'=>'error',
+                );
+                return Redirect()->back()->with($notification);
+            }
         }else{
-            Customer::create($data);
-            return Redirect()->back()->with('message','Insert Successfull!');
+            $customer = Customer::create($data);
+            try{
+                if($customer){
+                    $notification = array(
+                        'message'=>'Customer Added Successfull!',
+                        'alert-type'=>'success',
+                    );
+                    return Redirect()->back()->with($notification);
+                }
+            }catch(Throwable $exception){
+                $notification = array(
+                    'message'=>'Somthing is Wrong!',
+                    'alert-type'=>'error',
+                );
+                return Redirect()->back()->with($notification);
+            }
         }
     }
 
@@ -70,8 +99,14 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $deleteCustomer = Customer::find($id);
-        $deleteCustomer->delete();
-        return Redirect()->back()->with('message','delete Successfull!');
+        $delete = $deleteCustomer->delete();
+        if($delete){
+            $notification = array(
+                'message'=>'Delete Successfull!',
+                'alert-type'=>'success',
+            );
+            return Redirect()->back()->with($notification);
+        }
     }
 
     public function edit($id)
@@ -106,11 +141,39 @@ class CustomerController extends Controller
             $img_url = $img_path.$img_full_name;
             $img->move($img_path,$img_full_name);
             $data['photo']=$img_url;
-            $updateCustomer->update($data);
-            return Redirect()->route('index.customer')->with('message','update Successfull!');
+            $update = $updateCustomer->update($data);
+            try{
+                if($update){
+                    $notification = array(
+                        'message'=>'Update Successfull!',
+                        'alert-type'=>'success',
+                    );
+                    return Redirect()->route('index.customer')->with($notification);
+                }
+            }catch(Throwable $exception){
+                $notification = array(
+                    'message'=>'Somthing is Wrong!',
+                    'alert-type'=>'error',
+                );
+                return Redirect()->route('index.customer')->with($notification);
+            }
         }else{
-            $updateCustomer->update($data);
-            return Redirect()->route('index.customer')->with('message','upate Successfull!');
+            $update = $updateCustomer->update($data);
+            try{
+                if($update){
+                    $notification = array(
+                        'message'=>'Update Successfull!',
+                        'alert-type'=>'success',
+                    );
+                    return Redirect()->route('index.customer')->with($notification);
+                }
+            }catch(Throwable $exception){
+                $notification = array(
+                    'message'=>'Somthing is Wrong!',
+                    'alert-type'=>'error',
+                );
+                return Redirect()->route('index.customer')->with($notification);
+            }
         }
     }
 }

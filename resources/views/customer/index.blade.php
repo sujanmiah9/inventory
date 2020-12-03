@@ -9,18 +9,13 @@
         <li class="breadcrumb-item active">All Customers</li>
     </ol>
 </div>
-@if (session('message'))
-    <div class="alert alert-success">
-        {{session('message')}}
-    </div>
-@endif
 <div class="page-content fade-in-up">
     <div class="card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bgView text-white">
             <div class="row">
                 <h4 class="col-md-6">All Customers</h4>
                 <div class="col-md-6">
-                    <a href="{{route('create.customer')}}" class="btn btn-dark float-right"><i class="fa fa-plus"></i> Add</a>
+                    <a href="{{route('create.customer')}}" class="btn btn-light btn-sm float-right"><i class="fa fa-plus"></i> Add</a>
                 </div>
             </div>
         </div>

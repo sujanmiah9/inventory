@@ -125,7 +125,7 @@ class SalesController extends Controller
             if($insert){
                 Cart::destroy();
                 $notification = array(
-                    'message'=>'Purchase Successfull!',
+                    'message'=>'Sales Successfull!',
                     'alert-type'=>'success',
                 );
                 return Redirect()->route('dashboard')->with($notification);
