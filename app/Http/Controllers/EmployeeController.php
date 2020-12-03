@@ -54,6 +54,10 @@ class EmployeeController extends Controller
                     return Redirect()->back()->with($notification);
                 }
             }catch(Throwable $exception){
+                $notification = array(
+                    'message'=>'Somthing is Wrong!',
+                    'alert-type'=>'error',
+                );
                 return Redirect()->back()->with($notification);
             }  
         }else{

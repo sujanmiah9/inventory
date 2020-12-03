@@ -29,7 +29,7 @@
                     <span class="nav-label">Sales</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
                     <li>
-                        <a href=""><i class="sidebar-item-icon fa fa-universal-access"></i> Sales</a>
+                    <a href="{{route('create.sales')}}"><i class="sidebar-item-icon fa fa-universal-access"></i> Sales</a>
                         <a href=""><i class="sidebar-item-icon fa fa-info-circle"></i> Sales Details</a>
                     </li>
                 </ul>
@@ -40,7 +40,7 @@
                 <ul class="nav-2-level collapse">
                     <li>
                         <a href="{{route('create.purchase')}}"><i class="sidebar-item-icon fa fa-shopping-basket"></i> Purches</a>
-                        <a href=""><i class="sidebar-item-icon fa fa-info-circle"></i>Purches Details</a>
+                        <a href="{{route('detail.purchase')}}"><i class="sidebar-item-icon fa fa-info-circle"></i>Purches Details</a>
                     </li>
                 </ul>
             </li>

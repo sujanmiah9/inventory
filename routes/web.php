@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -99,7 +100,17 @@ Route::group(['middleware'=>'auth'],function(){
 
     //purchase
     Route::get('create/purchase',[PurchaseController::class,'create'])->name('create.purchase');
+    Route::get('detail/purchase',[PurchaseController::class,'detail'])->name('detail.purchase');
 
+    Route::post('add-cart',[PurchaseController::class,'addCart'])->name('addCart');
+    Route::post('cart/update{rowId}',[PurchaseController::class,'cartUpdate'])->name('cart.update');
+    Route::get('cart/delete{rowId}',[PurchaseController::class,'destroy'])->name('cart.delete');
+    Route::post('invoice/purchase',[PurchaseController::class,'invoicePurchase'])->name('invoice.purchase');
+    Route::post('store/purchase',[PurchaseController::class,'storePurchase'])->name('store.purchase');
+    Route::get('purchase.history{id}',[PurchaseController::class,'purchaseHistory'])->name('purchase.history');
+
+    //Sales
+    Route::get('create/sales', [SalesController::class, 'create'])->name('create.sales');
 });
 
 Route::group(['middleware'=>'guest'],function(){
