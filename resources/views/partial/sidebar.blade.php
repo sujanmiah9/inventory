@@ -15,22 +15,13 @@
             </li>
             <li class="heading">FEATURES</li>
             <li>
-                <a href="javascript:;"><i class="sidebar-item-icon fa fa-cart-plus"></i>
-                    <span class="nav-label">Pos</span><i class="fa fa-angle-left arrow"></i></a>
-                <ul class="nav-2-level collapse">
-                    <li>
-                        
-                        <a href=""><i class="sidebar-item-icon fa fa-file-text"></i> Invoice</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-universal-access"></i>
                     <span class="nav-label">Sales</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
                     <li>
                     <a href="{{route('create.sales')}}"><i class="sidebar-item-icon fa fa-universal-access"></i> Sales</a>
-                        <a href=""><i class="sidebar-item-icon fa fa-info-circle"></i> Sales Details</a>
+                    <a href="{{route('sales.pending')}}"><i class="sidebar-item-icon fa fa-info-circle"></i> pending Order</a>
+                    <a href="{{route('sales.success')}}"><i class="sidebar-item-icon fa fa-info-circle"></i> Success Order</a>
                     </li>
                 </ul>
             </li>
@@ -50,26 +41,14 @@
                 </a>
             </li>
             <li>
-                <a href="javascript:;"><i class="sidebar-item-icon fa fa-user"></i>
-                    <span class="nav-label">Employee</span><i class="fa fa-angle-left arrow"></i></a>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-product-hunt"></i>
+                    <span class="nav-label">Products</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
                     <li>
-                        <a href="{{route('create.employee')}}"><i class="fa fa-plus-circle"></i> Add Employee</a>
+                        <a href="{{route('create.product')}}"><i class="fa fa-plus-circle"></i> Add Products</a>
                     </li>
                     <li>
-                        <a href="{{route('index.employee')}}"><i class="fa fa-globe"></i> All Employee</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;"><i class="sidebar-item-icon fa fa-user-circle"></i>
-                    <span class="nav-label">Suppliers</span><i class="fa fa-angle-left arrow"></i></a>
-                <ul class="nav-2-level collapse">
-                    <li>
-                        <a href="{{route('create.supplier')}}"><i class="fa fa-plus-circle"></i> Add Supplier</a>
-                    </li>
-                    <li>
-                        <a href="{{route('index.supplier')}}"><i class="fa fa-globe"></i> All Supplier</a>
+                        <a href="{{route('index.product')}}"><i class="fa fa-globe"></i> All Products</a>
                     </li>
                 </ul>
             </li>
@@ -86,14 +65,38 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;"><i class="sidebar-item-icon fa fa-product-hunt"></i>
-                    <span class="nav-label">Products</span><i class="fa fa-angle-left arrow"></i></a>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-user-circle"></i>
+                    <span class="nav-label">Suppliers</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
                     <li>
-                        <a href="{{route('create.product')}}"><i class="fa fa-plus-circle"></i> Add Products</a>
+                        <a href="{{route('create.supplier')}}"><i class="fa fa-plus-circle"></i> Add Supplier</a>
                     </li>
                     <li>
-                        <a href="{{route('index.product')}}"><i class="fa fa-globe"></i> All Products</a>
+                        <a href="{{route('index.supplier')}}"><i class="fa fa-globe"></i> All Supplier</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-user"></i>
+                    <span class="nav-label">Customer</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{route('create.customer')}}"><i class="fa fa-plus-circle"></i> Add Customer</a>
+                    </li>
+                    <li>
+                        <a href="{{route('index.customer')}}"><i class="fa fa-globe"></i> All Customer</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-user"></i>
+                    <span class="nav-label">Employee</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{route('create.employee')}}"><i class="fa fa-plus-circle"></i> Add Employee</a>
+                    </li>
+                    <li>
+                        <a href="{{route('index.employee')}}"><i class="fa fa-globe"></i> All Employee</a>
                     </li>
                 </ul>
             </li>

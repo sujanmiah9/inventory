@@ -101,7 +101,6 @@ Route::group(['middleware'=>'auth'],function(){
     //purchase
     Route::get('create/purchase',[PurchaseController::class,'create'])->name('create.purchase');
     Route::get('detail/purchase',[PurchaseController::class,'detail'])->name('detail.purchase');
-
     Route::post('add-cart',[PurchaseController::class,'addCart'])->name('addCart');
     Route::post('cart/update{rowId}',[PurchaseController::class,'cartUpdate'])->name('cart.update');
     Route::get('cart/delete{rowId}',[PurchaseController::class,'destroy'])->name('cart.delete');
@@ -111,6 +110,16 @@ Route::group(['middleware'=>'auth'],function(){
 
     //Sales
     Route::get('create/sales', [SalesController::class, 'create'])->name('create.sales');
+    Route::get('sales/pending',[SalesController::class,'pending'])->name('sales.pending');
+    Route::get('sales/success',[SalesController::class,'success'])->name('sales.success');
+    Route::post('add-cart',[SalesController::class,'addCart'])->name('addCart');
+    Route::post('cart/update{rowId}',[SalesController::class,'cartUpdate'])->name('cart.update');
+    Route::get('cart/delete{rowId}',[SalesController::class,'destroy'])->name('cart.delete');
+    Route::post('invoice/sales',[SalesController::class,'invoiceSales'])->name('invoice.sales');
+    Route::post('store/sales',[SalesController::class,'storeSales'])->name('store.sales');
+    Route::get('sales.history{id}',[SalesController::class,'SalesHistory'])->name('sales.history');
+    Route::get('sales.done{id}',[SalesController::class,'SalesDone'])->name('sales.done');
+    Route::get('salesSuccess/histor{id}',[SalesController::class,'salesSuccessHistor'])->name('salesSuccess.history');
 });
 
 Route::group(['middleware'=>'guest'],function(){
