@@ -6,7 +6,7 @@
                 <div class="card-header cardB">
                     <div class="row">
                     <div class="col-md-6">
-                        <h4>Sales List</h4>
+                        <h4>Sales Pending List</h4>
                     </div>
                     <div class="col-md-6">
                         <a href="{{route('create.sales')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> Add</a>
@@ -18,9 +18,9 @@
                         <thead>
                             <tr>
                                 <th>Sr</th>
-                                <th>Purchase No</th>
-                                <th>Purchase Date</th>
-                                <th>Supplier Name</th>
+                                <th>Order No</th>
+                                <th>Order Date</th>
+                                <th>Customer Name</th>
                                 <th>Grand Total</th>
                                 <th>Status</th>
                                 <th>Aciton</th>
@@ -32,7 +32,7 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{$row->order_date}}</td>
-                                <td>{{$row->customer->name}}</td>
+                                <td>{{$row->name}}</td>
                                 <td>{{$row->total}}</td>
                                 <td class="badge badge-pill badge-danger mt-2 ml-4">{{$row->status}}</td>
                                 <td>

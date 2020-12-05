@@ -33,10 +33,6 @@
                                 <td>{{$viewProduct->code}}</td>
                             </tr>
                             <tr>
-                                <th>Product Garage</th>
-                                <td>{{$viewProduct->garage}}</td>
-                            </tr>
-                            <tr>
                                 <th>Product Route</th>
                                 <td>{{$viewProduct->route}}</td>
                             </tr>

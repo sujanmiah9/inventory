@@ -27,7 +27,6 @@
                         <th>Name</th>
                         <th>Code</th>
                         <th>Selling Price</th>
-                        <th>Garage</th>
                         <th>Route</th>
                         <th>Photo</th>
                         <th>Aciton</th>
@@ -39,7 +38,6 @@
                         <th>Name</th>
                         <th>Code</th>
                         <th>Selling Price</th>
-                        <th>Garage</th>
                         <th>Route</th>
                         <th>Photo</th>
                         <th>Aciton</th>
@@ -52,7 +50,6 @@
                             <td>{{$row->name}}</td>
                             <td>{{$row->code}}</td>
                             <td>{{$row->selPrice}}</td>
-                            <td>{{$row->garage}}</td>
                             <td>{{$row->route}}</td>
                             <td>
                                 <img src="{{URL::to($row->photo)}}" style="height: 80px; width:80px" alt="">

@@ -15,6 +15,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class SalesController extends Controller
 {
+//create Sales.......................
     public function create()
     {
         return view('sales.createSales',[
@@ -22,7 +23,7 @@ class SalesController extends Controller
             'customer'=>Customer::select('name', 'id')->get(),
         ]);
     }
-
+//cart Add ....................
     public function addCart(Request $request){
 
         $data = [
@@ -48,6 +49,7 @@ class SalesController extends Controller
         }
     
     }
+//cart Update......................
     public function cartUpdate(Request $request, $rowId ){
         $cartUpdate = $request->qty;
         $update = Cart::update($rowId, $cartUpdate);
@@ -65,6 +67,7 @@ class SalesController extends Controller
             return Redirect()->back()->with($notification);
         }
     }
+//cart Destroy...........................
     public function destroy($rowId ){
         $delete = Cart::remove($rowId);
         if($delete){
@@ -81,7 +84,7 @@ class SalesController extends Controller
             return Redirect()->back()->with($notification);
         }
     }
-
+//invoice create...........................
     public function invoiceSales(Request $request)
     {
         $request->validate([
@@ -94,6 +97,7 @@ class SalesController extends Controller
         $content = Cart::content();
         return view('sales.invoiceSales',compact('content','customer'));
     }
+//order store.................................
     public function storeSales(Request $request)
     {
         $data = [
@@ -125,7 +129,7 @@ class SalesController extends Controller
             if($insert){
                 Cart::destroy();
                 $notification = array(
-                    'message'=>'Sales Successfull!',
+                    'message'=>'Order Successfull!',
                     'alert-type'=>'success',
                 );
                 return Redirect()->route('dashboard')->with($notification);
@@ -138,17 +142,27 @@ class SalesController extends Controller
             return Redirect()->route('create.sales')->with($notification);
         }
     }
-
+//order Pending List..................................
     public function pending(){
-        $order = Order::with('customer')->where('status', 'Pending')->get();
+        $order = DB::table('orders')
+                ->join('customers', 'orders.customer_id','customers.id')
+                ->where('status', 'Pending')
+                ->select('orders.*', 'customers.name')
+                ->get();
+        // $order = Order::with('customer')->where('status', 'Pending')->get();
         return view('sales.detailSales',compact('order'));
     }
-
+//sales Success list................................
     public function success(){
-        $order = Order::with('customer')->where('status', 'success')->get();
+        $order = DB::table('orders')
+                ->join('customers', 'orders.customer_id','customers.id')
+                ->where('status', 'Success')
+                ->select('orders.*', 'customers.name')
+                ->get();
+        // $order = Order::with('customer')->where('status', 'success')->get();
         return view('sales.salesSuccess',compact('order'));
     }
-
+//sales Success history....................................
     public function salesSuccessHistor($id)
     {
         $order = DB::table('orders')
@@ -160,12 +174,13 @@ class SalesController extends Controller
         
         return view('sales.salesSuccessHistor', compact('order','orderDetails'));
     }
-
+//salesHistory................................................
     public function SalesHistory($id)
     {
         $order = DB::table('orders')
                 ->join('customers','orders.customer_id', 'customers.id')
                 ->where('orders.id', $id)
+                ->select('orders.*', 'customers.name','customers.address', 'customers.phone', 'customers.shopName')
                 ->first();
         
         $orderDetails =OrderDetails::where('order_id',$id)->with('product')->get();
@@ -173,7 +188,7 @@ class SalesController extends Controller
         return view('sales.salesHistory', compact('order','orderDetails'));
         
     }
-
+//salesDone....................................................
     public function salesDone($id)
     {
         $done = Order::where('id',$id)->update(['status'=>'Success']);

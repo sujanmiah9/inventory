@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->foreignId('cat_id');
             $table->foreignId('sup_id');
             $table->string('code');
-            $table->string('garage');
             $table->string('route');
             $table->string('buyDate');
             $table->string('expireDate');

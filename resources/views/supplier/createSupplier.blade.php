@@ -30,17 +30,20 @@
                                 <label for="">Supplier Name</label>
                                 <input type="text" class="form-control" name="sup_name">
                             </div>
-                            <div class="form-group">
-                                <label for="">Supplier Email</label>
-                                <input type="email" class="form-control" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Supplier Phone</label>
-                                <input type="text" name="phone" class="form-control">
-                            </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Shopname</label>
+                                    <label for="">Supplier Email</label>
+                                    <input type="email" class="form-control" name="email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Supplier Phone</label>
+                                    <input type="text" name="phone" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Company Name</label>
                                     <input type="text" name="shopName" class="form-control">
                                 </div>
                                 <div class="form-group col-md-6">

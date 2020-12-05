@@ -30,13 +30,15 @@
                                 <label for="">Customer Name</label>
                                 <input type="text" class="form-control" name="name">
                             </div>
-                            <div class="form-group">
-                                <label for="">Email</label>
-                                <input type="email" class="form-control" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Phone</label>
-                                <input type="text" name="phone" class="form-control">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Email</label>
+                                    <input type="email" class="form-control" name="email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Phone</label>
+                                    <input type="text" name="phone" class="form-control">
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
