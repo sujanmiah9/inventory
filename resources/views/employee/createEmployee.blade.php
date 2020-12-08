@@ -30,13 +30,15 @@
                                 <label for="">Employee Name</label>
                                 <input type="text" class="form-control" name="name">
                             </div>
-                            <div class="form-group">
-                                <label for="">Employee Email</label>
-                                <input type="email" class="form-control" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Employee Phone</label>
-                                <input type="text" name="phone" class="form-control">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Employee Email</label>
+                                    <input type="email" class="form-control" name="email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Employee Phone</label>
+                                    <input type="text" name="phone" class="form-control">
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">

@@ -30,30 +30,28 @@
                                 <label for="">Product Name</label>
                                 <input type="text" class="form-control" name="name">
                             </div>
-                            <div class="form-group">
-                                <label for="">Category Name</label>
-                                <select name="cat_id" id="" class="form-control">
-                                    @foreach ($category as $row)
-                                        <option value="{{$row->id}}">{{$row->cat_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Supplier Name</label>
-                                <select name="sup_id" id="" class="form-control">
-                                    @foreach ($supplier as $row)
-                                        <option value="{{$row->id}}">{{$row->sup_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Product Code</label>
-                                <input type="text" name="code" class="form-control">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Category Name</label>
+                                    <select name="cat_id" id="" class="form-control">
+                                        @foreach ($category as $row)
+                                            <option value="{{$row->id}}">{{$row->cat_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Supplier Name</label>
+                                    <select name="sup_id" id="" class="form-control">
+                                        @foreach ($supplier as $row)
+                                            <option value="{{$row->id}}">{{$row->sup_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Product Garage/Godaun</label>
-                                    <input type="text" class="form-control" name="garage">
+                                    <label for="">Product Code</label>
+                                    <input type="text" name="code" class="form-control">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Product Route</label>

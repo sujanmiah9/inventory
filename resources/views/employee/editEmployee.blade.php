@@ -19,15 +19,17 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Employee Name</label>
-                            <input type="text" class="form-control" value="{{$editEmployee->name}}" name="name">
+                                <input type="text" class="form-control" value="{{$editEmployee->name}}" name="name">
                             </div>
-                            <div class="form-group">
-                                <label for="">Employee Email</label>
-                                <input type="email" class="form-control" name="email" value="{{$editEmployee->email}}">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Employee Phone</label>
-                                <input type="text" name="phone" class="form-control" value="{{$editEmployee->phone}}">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Employee Email</label>
+                                    <input type="email" class="form-control" name="email" value="{{$editEmployee->email}}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Employee Phone</label>
+                                    <input type="text" name="phone" class="form-control" value="{{$editEmployee->phone}}">
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">

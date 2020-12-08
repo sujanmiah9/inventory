@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row pt-3">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -13,13 +13,13 @@
                     </div>
                 @endif
                 <div class="card">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header bg-light cardB">
                         <div class="row">
                             <div class="col-md-6">
                                 <h4>Update Customer</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <a href="{{route('index.customer')}}" class="btn btn-success">All Customer</a>
+                                <a href="{{route('index.customer')}}" class="btn btn-primary btn-sm">All Customer</a>
                             </div>
                         </div>
                     </div>
@@ -28,16 +28,19 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Customer Name</label>
-                            <input type="text" class="form-control" value="{{$editCustomer->name}}" name="name">
+                                <input type="text" class="form-control" value="{{$editCustomer->name}}" name="name">
                             </div>
-                            <div class="form-group">
-                                <label for="">Email</label>
-                                <input type="email" class="form-control" value="{{$editCustomer->email}}" name="email">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Email</label>
+                                    <input type="email" class="form-control" value="{{$editCustomer->email}}" name="email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Phone</label>
+                                    <input type="text" name="phone" class="form-control" value="{{$editCustomer->phone}}">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="">Phone</label>
-                                <input type="text" name="phone" class="form-control" value="{{$editCustomer->phone}}">
-                            </div>
+                            
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="">Shopname</label>

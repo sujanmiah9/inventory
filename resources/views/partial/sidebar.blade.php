@@ -22,7 +22,7 @@
                 <ul class="nav-2-level collapse>
                     <li>
                     <a href="{{route('create.sales')}}"><i class="sidebar-item-icon fa fa-universal-access"></i> Sales</a>
-                    <a href="{{route('sales.pending')}}"><i class="sidebar-item-icon fa fa-info-circle"></i> pending Order</a>
+                    <a href="{{route('sales.pending')}}"><i class="sidebar-item-icon fa fa-info-circle"></i> Pending Order</a>
                     <a href="{{route('sales.success')}}"><i class="sidebar-item-icon fa fa-info-circle"></i> Success Order</a>
                     </li>
                 </ul>
@@ -139,7 +139,7 @@
                 </ul>
             </li>
             <li>
-                <a href="calendar.html"><i class="sidebar-item-icon fa fa-cog"></i>
+                <a href="{{route('setting')}}"><i class="sidebar-item-icon fa fa-cog"></i>
                     <span class="nav-label">Setting</span>
                 </a>
             </li>

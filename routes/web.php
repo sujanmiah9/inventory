@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -122,6 +123,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('sales.done{id}',[SalesController::class,'SalesDone'])->name('sales.done');
     Route::get('salesSuccess/histor{id}',[SalesController::class,'salesSuccessHistor'])->name('salesSuccess.history');
 
+<<<<<<< HEAD
     //stock
     //stock
     Route::get('view/stock',[StockController::class,'view'])->name('view.stock');
@@ -129,6 +131,11 @@ Route::group(['middleware'=>'auth'],function(){
 
 
 
+=======
+    //Setting
+    Route::get('setting',[SettingController::class, 'setting'])->name('setting');
+    Route::post('store/setting{id}',[SettingController::class, 'storeSetting'])->name('store.setting');
+>>>>>>> 1c41e518441c59d4450418c5e60a47c2a0dd75fe
 });
 
 Route::group(['middleware'=>'guest'],function(){
