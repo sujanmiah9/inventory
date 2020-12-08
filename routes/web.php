@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -120,6 +121,14 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('sales.history{id}',[SalesController::class,'SalesHistory'])->name('sales.history');
     Route::get('sales.done{id}',[SalesController::class,'SalesDone'])->name('sales.done');
     Route::get('salesSuccess/histor{id}',[SalesController::class,'salesSuccessHistor'])->name('salesSuccess.history');
+
+    //stock
+    //stock
+    Route::get('view/stock',[StockController::class,'view'])->name('view.stock');
+    Route::get('view/in/outward',[StockController::class,'show'])->name('show.ward');
+
+
+
 });
 
 Route::group(['middleware'=>'guest'],function(){

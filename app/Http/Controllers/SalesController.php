@@ -16,7 +16,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class SalesController extends Controller
 {
     public function create()
-    {
+    {   
+
         return view('sales.createSales',[
             'product'=>Product::with('category')->get(),
             'customer'=>Customer::select('name', 'id')->get(),
