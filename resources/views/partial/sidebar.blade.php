@@ -14,10 +14,12 @@
                 </a>
             </li>
             <li class="heading">FEATURES</li>
+       
             <li>
+                
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-universal-access"></i>
                     <span class="nav-label">Sales</span><i class="fa fa-angle-left arrow"></i></a>
-                <ul class="nav-2-level collapse">
+                <ul class="nav-2-level collapse>
                     <li>
                     <a href="{{route('create.sales')}}"><i class="sidebar-item-icon fa fa-universal-access"></i> Sales</a>
                     <a href="{{route('sales.pending')}}"><i class="sidebar-item-icon fa fa-info-circle"></i> Pending Order</a>
@@ -37,8 +39,14 @@
             </li>
             <li>
                 <a href="calendar.html"><i class="sidebar-item-icon fa fa-archive"></i>
-                    <span class="nav-label">Stock</span>
+                    <span class="nav-label">Stock</span><i class="fa fa-angle-left arrow"></i>
                 </a>
+                <ul class="nav-2-level collapse {{ request()->route()->getName() == 'show.ward' ? 'in' : ''}} {{ request()->route()->getName() == 'view.stock' ? 'in' : ''}}" aria-expanded="true">
+                    <li>
+                    <a href="{{route('show.ward')}}"><i class="sidebar-item-icon fa fa-info-circle"></i>In / Outward Reports</a>
+                    <a href="{{route('view.stock')}}"><i class="sidebar-item-icon fa fa-info-circle"></i>Net Stock Reports</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-product-hunt"></i>

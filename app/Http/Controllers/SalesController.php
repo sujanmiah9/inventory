@@ -17,7 +17,8 @@ class SalesController extends Controller
 {
 //create Sales.......................
     public function create()
-    {
+    {   
+
         return view('sales.createSales',[
             'product'=>Product::with('category')->get(),
             'customer'=>Customer::select('name', 'id')->get(),
