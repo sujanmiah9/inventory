@@ -9,10 +9,12 @@
     <!-- GLOBAL MAINLY STYLES-->
     <link rel="icon" href="{{asset('upload')}}/icon.png" type="image/x-icon"/>
     <link href="{{asset('asset')}}/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <!-- THEME STYLES-->
     <link href="{{asset('asset')}}/assets/css/main.css" rel="stylesheet" />
         <!-- PAGE LEVEL STYLES-->
     <link href="{{asset('asset')}}/assets/css/pages/auth-light.css" rel="stylesheet" />
+    
     <style>
         .back{
             background-image: url({{asset('upload/back1.jpg')}});
@@ -62,11 +64,6 @@
                     <input class="form-control" type="password" name="password" placeholder="Password">
                 </div>
             </div>
-            <div class="form-group d-flex justify-content-between">
-                <label class="ui-checkbox ui-checkbox-info">
-                    <input type="checkbox">
-                    <span class="input-span"></span>Remember me</label>
-            </div>
             <div class="form-group">
                 <button class="btn btn-info btn-block" type="submit">Login</button>
             </div>
@@ -89,6 +86,7 @@
     <script src="{{asset('asset')}}/assets/vendors/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
     <!-- CORE SCRIPTS-->
     <script src="{{asset('asset')}}/assets/js/app.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <!-- PAGE LEVEL SCRIPTS-->
     <script type="text/javascript">
         $(function() {
@@ -111,6 +109,25 @@
                 },
             });
         });
+    </script>
+    <script type="text/javascript">
+        @if(Session::has('message'))
+            var type ="{{Session::get('alert-type', 'info')}}"
+            switch(type){
+            case 'info':
+            toastr.info("{{Session::get('message')}}");
+            break;
+            case 'success':
+            toastr.success("{{Session::get('message')}}");
+            break;
+            case 'warning':
+            toastr.warning("{{Session::get('message')}}");
+            break;
+            case 'error':
+            toastr.error("{{Session::get('message')}}");
+            break;
+            }
+        @endif
     </script>
 </body>
 

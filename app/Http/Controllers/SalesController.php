@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Throwable;
 use App\Models\Order;
+use App\Models\Stock;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Supplier;
+use App\Models\Setting;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,42 +29,65 @@ class SalesController extends Controller
 //cart Add ....................
     public function addCart(Request $request){
 
-        $data = [
-            'id'=>$request->id,
-            'name'=>$request->name,
-            'qty'=>$request->qty,
-            'price'=>$request->unit,
-            'weight'=>'0',
-        ];
-        $add = Cart::add($data);
-        if($add){
-            $notification = array(
-                'message'=>'Product Add Successfull',
-                'alert-type'=>'success',
-            );
-            return Redirect()->back()->with($notification);
+        $check = Stock::where('quantity', '>=', $request->qty)->where('product_id',$request->id)->first();
+        if($check){
+            $data = [
+                'id'=>$request->id,
+                'name'=>$request->name,
+                'qty'=>$request->qty,
+                'price'=>$request->unit,
+                'weight'=>'0',
+                'options'=>[
+                    'description'=>$request->description,
+                ]
+            ];
+            $add = Cart::add($data);
+            if($add){
+                $notification = array(
+                    'message'=>'Product Add Successfull',
+                    'alert-type'=>'success',
+                );
+                return Redirect()->back()->with($notification);
+            }else{
+                $notification = array(
+                    'message'=>'Error',
+                    'alert-type'=>'error',
+                );
+                return Redirect()->back()->with($notification);
+            }
         }else{
             $notification = array(
-                'message'=>'Error',
+                'message'=>'Stock not Available',
                 'alert-type'=>'error',
             );
             return Redirect()->back()->with($notification);
         }
-    
     }
 //cart Update......................
-    public function cartUpdate(Request $request, $rowId ){
+    public function cartUpdate1(Request $request, $rowId ){
         $cartUpdate = $request->qty;
-        $update = Cart::update($rowId, $cartUpdate);
-        if($update){
-            $notification = array(
-                'message'=>'Cart Update Successfull',
-                'alert-type'=>'success',
-            );
-            return Redirect()->back()->with($notification);
+        $check1 = DB::table('stocks')
+                ->where('product_id', $request->product_id)
+                ->where('quantity','>=',$request->qty)
+                ->first();
+        if($check1){
+            $update = Cart::update($rowId, $cartUpdate);
+            if($update){
+                $notification = array(
+                    'message'=>'Cart Update Successfull',
+                    'alert-type'=>'success',
+                );
+                return Redirect()->back()->with($notification);
+            }else{
+                $notification = array(
+                    'message'=>'Error',
+                    'alert-type'=>'error',
+                );
+                return Redirect()->back()->with($notification);
+            }
         }else{
             $notification = array(
-                'message'=>'Error',
+                'message'=>'Stock not Available',
                 'alert-type'=>'error',
             );
             return Redirect()->back()->with($notification);
@@ -96,7 +121,8 @@ class SalesController extends Controller
         $id = $request->customer_id;
         $customer = Customer::where('id',$id)->first();
         $content = Cart::content();
-        return view('sales.invoiceSales',compact('content','customer'));
+        $shopdetails = Setting::first();
+        return view('sales.invoiceSales',compact('content','customer','shopdetails'));
     }
 //order store.................................
     public function storeSales(Request $request)
@@ -123,42 +149,43 @@ class SalesController extends Controller
             $pdata['quantity']=$content->qty;
             $pdata['unit_cost']=$content->price;
             $pdata['total']=$content->total;
+            $pdata['order_date']=$request->order_date;
+            $pdata['description']=$content->options->description;
 
-            $insert = OrderDetails::insert($pdata);
+            $product = Product::where('id', $content->id)->select('buyPrice')->first();
+            $total_buy_price = $product->buyPrice*$content->qty;
+
+            $total_sel_price = $content->price*$content->qty;
+
+            $pdata['profit'] = $total_sel_price-$total_buy_price;
+            $orderDetail_id = OrderDetails::insertGetId($pdata);
         }
-        try{
-            if($insert){
-                Cart::destroy();
-                $notification = array(
-                    'message'=>'Order Successfull!',
-                    'alert-type'=>'success',
-                );
-                return Redirect()->route('dashboard')->with($notification);
+        
+        foreach($contents as $content){
+            $qdata = [
+                'product_id'=>$content->id,
+                'quantity'=>$content->qty,
+            ];
+            $check = Stock::where('product_id', $content->id)->first();
+
+            if($check){
+                $decrement = Stock::find($check->id)->decrement('quantity', $content->qty);
             }
-        }catch(Throwable $exception){
+    }
+    Cart::destroy();
             $notification = array(
-                'message'=>'Somthing is Wrong!',
-                'alert-type'=>'error',
+                'message'=>'Sales Successfull !',
+                'alert-type'=>'success',
             );
             return Redirect()->route('create.sales')->with($notification);
-        }
-    }
-//order Pending List..................................
-    public function pending(){
-        $order = DB::table('orders')
-                ->join('customers', 'orders.customer_id','customers.id')
-                ->where('status', 'Pending')
-                ->select('orders.*', 'customers.name')
-                ->get();
-        // $order = Order::with('customer')->where('status', 'Pending')->get();
-        return view('sales.detailSales',compact('order'));
-    }
+}
 //sales Success list................................
     public function success(){
         $order = DB::table('orders')
                 ->join('customers', 'orders.customer_id','customers.id')
                 ->where('status', 'Success')
                 ->select('orders.*', 'customers.name')
+                ->orderBy('id','desc')
                 ->get();
         // $order = Order::with('customer')->where('status', 'success')->get();
         return view('sales.salesSuccess',compact('order'));
@@ -172,39 +199,9 @@ class SalesController extends Controller
                 ->first();
         
         $orderDetails =OrderDetails::where('order_id',$id)->with('product')->get();
+        $shopdetails = Setting::first();
         
-        return view('sales.salesSuccessHistor', compact('order','orderDetails'));
+        return view('sales.salesSuccessHistor', compact('order','orderDetails','shopdetails'));
     }
-//salesHistory................................................
-    public function SalesHistory($id)
-    {
-        $order = DB::table('orders')
-                ->join('customers','orders.customer_id', 'customers.id')
-                ->where('orders.id', $id)
-                ->select('orders.*', 'customers.name','customers.address', 'customers.phone', 'customers.shopName')
-                ->first();
-        
-        $orderDetails =OrderDetails::where('order_id',$id)->with('product')->get();
-        
-        return view('sales.salesHistory', compact('order','orderDetails'));
-        
-    }
-//salesDone....................................................
-    public function salesDone($id)
-    {
-        $done = Order::where('id',$id)->update(['status'=>'Success']);
-        if($done){
-            $notification = array(
-                'message'=>'Order confirmed  Successfull!',
-                'alert-type'=>'success',
-            );
-            return Redirect()->route('dashboard')->with($notification);
-        }else{
-            $notification = array(
-                'message'=>'Somthing is Wrong!',
-                'alert-type'=>'error',
-            );
-            return Redirect()->route('dashboard')->with($notification);
-        }
-    }
+
 }

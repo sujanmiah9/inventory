@@ -17,22 +17,26 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'email'=>'required',
-            'phone'=>'required',
-            'city'=>'required',
-            'nid'=>'required',
-            'salary'=>'required',
+            'email'=>'required|email|unique:suppliers,email',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:11',
+            'nid'=>'required|numeric',
+            'salary'=>'required|numeric',
             'address'=>'required',
+        ],[
+            'name.required'=>'Name field is empty.',
+            'email.required'=>'Email field is empty',
+            'phone.required'=>'Phone number field is empty.',
+            'nid.required'=>'NID number field is empty.',
+            'nid.numeric'=>'The NID field must be a number.',
+            'salary.required'=>'Salary field is empty.',
+            'address.required'=>'Address field is empty.',
         ]);
         $data = [
             'name'=>$request->name,
             'email'=>$request->email,
             'phone'=>$request->phone,
-            'experiense'=>$request->experiense,
             'nid'=>$request->nid,
             'salary'=>$request->salary,
-            'vacation'=>$request->vacation,
-            'city'=>$request->city,
             'address'=>$request->address
         ];
         $img =$request-> file('photo');
@@ -92,13 +96,13 @@ class EmployeeController extends Controller
         return view('employee.viewEmployee', compact('viewEmployee'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $deleteEmployee = Employee::find($id);
+        $deleteEmployee = Employee::find($request->id);
         $delete = $deleteEmployee->delete();
         if($delete){
             $notification = array(
-                'message'=>'Data Delete Successfull!',
+                'message'=>'Delete Successfull!',
                 'alert-type'=>'success',
             );
             return Redirect()->route('index.employee')->with($notification);
@@ -119,11 +123,8 @@ class EmployeeController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'phone'=>$request->phone,
-            'experiense'=>$request->experiense,
             'nid'=>$request->nid,
             'salary'=>$request->salary,
-            'vacation'=>$request->vacation,
-            'city'=>$request->city,
             'address'=>$request->address
         ];
         $img =$request-> file('photo');

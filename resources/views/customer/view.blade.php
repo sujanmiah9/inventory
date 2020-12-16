@@ -41,22 +41,6 @@
                                 <td>{{$viewCustomer->city}}</td>
                             </tr>
                             <tr>
-                                <th>Account Number</th>
-                                <td>{{$viewCustomer->accountNumber}}</td>
-                            </tr>
-                            <tr>
-                                <th>Account Holder</th>
-                                <td>{{$viewCustomer->accountHolder}}</td>
-                            </tr>
-                            <tr>
-                                <th>Bank Name</th>
-                                <td>{{$viewCustomer->bankName}}</td>
-                            </tr>
-                            <tr>
-                                <th>Bank Branch</th>
-                                <td>{{$viewCustomer->bankBranch}}</td>
-                            </tr>
-                            <tr>
                                 <th>Photo</th>
                                 <td>
                                     <img src="{{URL::to($viewCustomer->photo)}}" alt="" style="height: 80px; width:80px" >

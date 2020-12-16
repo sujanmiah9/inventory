@@ -31,7 +31,7 @@
                                 <textarea name="description" id="" cols="30" rows="3" class="form-control">{{$editCategory->description}}</textarea>
                             </div>
                             <div class="text-right pt-2">
-                                <input type="submit" value="Update" class="btn btn-primary btn-lg">
+                                <input type="submit" value="Update" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

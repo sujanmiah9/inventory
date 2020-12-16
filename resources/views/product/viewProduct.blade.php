@@ -25,16 +25,8 @@
                                 <td>{{$viewProduct->cat_name}}</td>
                             </tr>
                             <tr>
-                                <th>Supplier Name</th>
-                                <td>{{$viewProduct->sup_name}}</td>
-                            </tr>
-                            <tr>
                                 <th>Product Code</th>
                                 <td>{{$viewProduct->code}}</td>
-                            </tr>
-                            <tr>
-                                <th>Product Route</th>
-                                <td>{{$viewProduct->route}}</td>
                             </tr>
                             <tr>
                                 <th>Buy Date</th>
@@ -51,6 +43,10 @@
                             <tr>
                                 <th>Selling Price</th>
                                 <td>{{$viewProduct->selPrice}}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{$viewProduct->description}}</td>
                             </tr>
                             <tr>
                                 <th>Photo</th>

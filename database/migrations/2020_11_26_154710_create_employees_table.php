@@ -18,11 +18,8 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('experiense');
             $table->string('nid');
             $table->string('salary');
-            $table->string('vacation');
-            $table->string('city');
             $table->string('address');
             $table->string('photo')->nullable();
             $table->timestamps();

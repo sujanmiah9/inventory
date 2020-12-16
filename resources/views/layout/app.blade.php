@@ -17,8 +17,7 @@
     <link href="{{asset('asset')}}/assets/css/main.min.css" rel="stylesheet" />
     <style>
         .bgView{
-            background-color: #5f27cd;
-            color: #fff;
+            background-color: #5f27cd;color: #fff;
         }
         .cardP{
             border-top: 5px solid #1abc9c;
@@ -33,15 +32,13 @@
             border-top: 5px solid #3498db;
         }
         label{
-        font-weight:bold;
+            font-weight:bold;
         }
         .form-group input::-webkit-input-placeholder {
-            color:#ced6e0;
-            font-size:15px;
+            color:#ced6e0;font-size:15px;
         }
         .form-group select{
-            font-size:15px;
-            color:#ced6e0;
+            font-size:15px;color:#ced6e0;
         }
         .shadow{
             box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
@@ -49,6 +46,13 @@
         .hr2{
             border-bottom: 2px solid #fff;
         }
+        .widget-stat-icon{
+            line-height: 140px; bottom: 45px;width: 70px; height: 76%;
+        }
+        .span_star_message{
+            color: red; font-weight:bold;
+        }
+        .pic{height: 50px; width:50px; border-radius: 6px;}
     </style>
 </head>
 
@@ -136,6 +140,39 @@
             break;
             }
         @endif
+    </script>
+    <script>
+        $('#logoutModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        var recipient = button.data('href') 
+        var modal = $(this)
+        modal.find('.modal-body #input').val(recipient)
+    })
+    </script>
+    <script>
+        $('#paymodal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        var recipient = button.data('href') 
+        var modal = $(this)
+        modal.find('.modal-body #input').val(recipient)
+    })
+    </script>
+    <script>
+        (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+            });
+        }, false);
+        })();
     </script>
 </body>
 </html>

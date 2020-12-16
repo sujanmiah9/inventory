@@ -33,26 +33,12 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Experiense</label>
-                                    <input type="text" name="experiense" class="form-control" value="{{$editEmployee->experiense}}">
-                                </div>
-                                <div class="form-group col-md-6">
                                     <label for="">NID No</label>
                                     <input type="text" class="form-control" name="nid" value="{{$editEmployee->nid}}">
                                 </div>
-                            </div>
-                            <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="">Salary</label>
                                     <input type="text" class="form-control" name="salary" value="{{$editEmployee->salary}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="">Vacation</label>
-                                    <input type="text" class="form-control" name="vacation" value="{{$editEmployee->vacation}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="">City</label>
-                                    <input type="text" class="form-control" name="city" value="{{$editEmployee->city}}">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -70,7 +56,7 @@
                             <textarea name="address" id="" cols="30" rows="3" class="form-control"> {{$editEmployee->address}}</textarea>
                             </div>
                             <div class="text-right pt-2">
-                                <input type="submit" value="Update" class="btn btn-primary btn-lg">
+                                <input type="submit" value="Update" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

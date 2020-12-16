@@ -33,24 +33,12 @@
                                 <td>{{$viewEmployee->address}}</td>
                             </tr>
                             <tr>
-                                <th>Experiense</th>
-                                <td>{{$viewEmployee->experiense}}</td>
-                            </tr>
-                            <tr>
                                 <th>NID No</th>
                                 <td>{{$viewEmployee->nid}}</td>
                             </tr>
                             <tr>
                                 <th>Salary</th>
                                 <td>{{$viewEmployee->salary}}</td>
-                            </tr>
-                            <tr>
-                                <th>Vacation</th>
-                                <td>{{$viewEmployee->vacation}}</td>
-                            </tr>
-                            <tr>
-                                <th>City</th>
-                                <td>{{$viewEmployee->city}}</td>
                             </tr>
                             <tr>
                                 <th>Photo</th>

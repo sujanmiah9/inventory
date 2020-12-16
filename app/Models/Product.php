@@ -9,6 +9,9 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    // protected $fillable = [
+    //     'name', 'cat_id', 'code', 'buyDate', 'expireDate', 'buyPrice', 'selPrice', 'description', 'photo'
+    // ];
 
     public function category()
     {
@@ -28,6 +31,11 @@ class Product extends Model
     public function orderDetails()
     {
         return $this->hasMany(OrderDetails::class);
+    }
+
+    public function stock()
+    {
+        return $this->hasMany(Stock::class);
     }
 
 }

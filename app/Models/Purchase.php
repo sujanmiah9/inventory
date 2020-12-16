@@ -19,4 +19,9 @@ class Purchase extends Model
     {
         return $this->hasMany(purchaseDetails::class);
     }
+
+    public function stock()
+    {
+        return $this->hasMany(Stock::class);
+    }
 }

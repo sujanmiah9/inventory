@@ -42,7 +42,7 @@
                                                 <tr>
                                                     <td>{{$row->name}}</td>
                                                     <td>
-                                                    <form action="{{route('cart.update',$row->rowId)}}" method="POST">
+                                                    <form action="{{route('cart.update2',$row->rowId)}}" method="POST">
                                                         @csrf
                                                             <input type="number" style="width:75px" value="{{$row->qty}}" name="qty">
                                                             <button class="btn btn-success" style="padding: .2rem; margin-left:5px;"> <i class="fa fa-check"></i> </button>
@@ -68,15 +68,6 @@
                                         </div>
                                     </div>
                                     <div class=" pt-3">
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
                                         <form action="{{route('invoice.purchase')}}" method="POST">
                                             @csrf
                                             <div class="form-group">
@@ -123,12 +114,13 @@
                                                 <img src="{{URL::to($row->photo)}}" alt="" style="height: 50px; width:50px">
                                                 </td>
                                                 <td>
-                                                    <form action="{{route('addCart')}}" method="POST">
+                                                    <form action="{{route('addCart/purchase')}}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{$row->id}}">
                                                         <input type="hidden" name="name" value="{{$row->name}}">
                                                         <input type="hidden" name="unit" value="{{$row->buyPrice}}">
                                                         <input type="hidden" name="qty" value="1">
+                                                        <input type="hidden" name="description" value="{{$row->description}}">
                                                         <button class="btn btn-success" style="padding: .rem; margin-left:5px;"> <i class="fa fa-plus"></i> </button>
                                                     </form>
                                                 </td>
@@ -144,7 +136,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="modal-primary">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -155,73 +146,76 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('store.supplier')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="">Supplier Name</label>
-                        <input type="text" class="form-control" name="sup_name">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="">Supplier Email</label>
-                            <input type="email" class="form-control" name="email">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="">Supplier Phone</label>
-                            <input type="text" name="phone" class="form-control">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="">Company Name</label>
-                            <input type="text" name="shopName" class="form-control">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="">City</label>
-                            <input type="text" class="form-control" name="city">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="">Account Number</label>
-                            <input type="text" class="form-control" name="accountNumber">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="">Account Holder</label>
-                            <input type="text" class="form-control" name="accountHolder">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="">Bank Name</label>
-                            <input type="text" class="form-control" name="bankName">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="">Bank Branch</label>
-                            <input type="text" class="form-control" name="bankBranch">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Supplier Type</label>
-                        <select name="type" class="form-control">
-                            <option value="Distributor">Distributor</option>
-                            <option value="Whole Sailer">Whole Sailer</option>
-                            <option value="Brochure">Brochure</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Upload Photo</label>
-                        <input type="file" class="form-control" name="photo">
-                    </div>
-                    <div class="form-gorup">
-                        <label for="">Address</label>
-                        <textarea name="address" id="" cols="30" rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="text-right pt-3">
-                        <input type="submit" value="Add" class="btn btn-primary btn-lg">
-                    </div>
-                </form>
+            <form action="{{route('store.supplier')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Supplier Name</label><span class="span_star_message"> *</span>
+                                    <input type="text" class="form-control" name="sup_name">
+                                    @error('sup_name')
+                                        <span class="span_star_message">{{$message}}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Supplier Email</label><span class="span_star_message"> *</span>
+                                    <input type="email" class="form-control" name="email">
+                                    @error('email')
+                                        <span class="span_star_message">{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Supplier Type</label><span class="span_star_message"> *</span>
+                                    <select name="type" class="form-control">
+                                        <option value="">Select type</option>
+                                        <option value="Distributor">Distributor</option>
+                                        <option value="Whole Sailer">Whole Sailer</option>
+                                        <option value="Brochure">Brochure</option>
+                                    </select>
+                                    @error('type')
+                                        <span class="span_star_message">{{$message}}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Supplier Phone</label><span class="span_star_message"> *</span>
+                                    <input type="text" name="phone" class="form-control">
+                                    @error('phone')
+                                        <span class="span_star_message">{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Company Name</label><span class="span_star_message"> *</span>
+                                    <input type="text" name="shopName" class="form-control">
+                                    @error('shopName')
+                                        <span class="span_star_message">{{$message}}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">City</label><span class="span_star_message"> *</span>
+                                    <input type="text" class="form-control" name="city">
+                                    @error('city')
+                                        <span class="span_star_message">{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Upload Photo</label><span class="span_star_message"> *</span>
+                                <input type="file" class="form-control" name="photo">
+                            </div>
+                            <div class="form-gorup">
+                                <label for="">Address</label><span class="span_star_message"> *</span>
+                                <textarea name="address" id="" cols="30" rows="3" class="form-control"></textarea>
+                                @error('address')
+                                        <span class="span_star_message">{{$message}}</span>
+                                    @enderror
+                            </div>
+                            <div class="text-right pt-3">
+                                <input type="submit" value="Add" class="btn btn-primary">
+                            </div>
+                        </form>
             </div>
             
             </div>

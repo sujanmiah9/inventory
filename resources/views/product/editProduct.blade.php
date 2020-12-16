@@ -36,22 +36,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Supplier Name</label>
-                                    <select name="sup_id" id="" class="form-control">
-                                        @foreach ($supplier as $row)
-                                            <option value="{{$row->id}}"<?php if($editProduct->sup_id == $row->id) echo "selected" ?> >{{$row->sup_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
                                     <label for="">Product Code</label>
                                     <input type="text" name="code" class="form-control" value="{{$editProduct->code}}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">Product Route</label>
-                                    <input type="text" class="form-control" name="route" value="{{$editProduct->route}}">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -84,8 +70,12 @@
                                     <img src="{{URL::to($editProduct->photo)}}" alt="" style="height: 80px; width:80px">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="">Description</label>
+                                <textarea name="description" id="" cols="30" rows="4" class="form-control">{{$editProduct->description}}</textarea>
+                            </div>
                             <div class="text-right pt-2">
-                                <input type="submit" value="Update" class="btn btn-primary btn-lg">
+                                <input type="submit" value="Update" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

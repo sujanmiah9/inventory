@@ -24,45 +24,56 @@
                 <thead>
                     <tr>
                         <th>Sr</th>
-                        <th>Name</th>
                         <th>Code</th>
+                        <th>Name</th>
+                        <th>Category Name</th>
                         <th>Selling Price</th>
-                        <th>Route</th>
                         <th>Photo</th>
                         <th>Aciton</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Sr</th>
-                        <th>Name</th>
-                        <th>Code</th>
-                        <th>Selling Price</th>
-                        <th>Route</th>
-                        <th>Photo</th>
-                        <th>Aciton</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     @foreach ($product as $key=> $row)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>{{$row->name}}</td>
                             <td>{{$row->code}}</td>
+                            <td>{{$row->name}}</td>
+                            <td>{{$row->category->cat_name}}</td>
                             <td>{{$row->selPrice}}</td>
-                            <td>{{$row->route}}</td>
                             <td>
-                                <img src="{{URL::to($row->photo)}}" style="height: 80px; width:80px" alt="">
+                                <img src="{{URL::to($row->photo)}}" class="pic" alt="">
                             </td>
                             <td>
-                                <a href="{{route('edit.product',$row->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                                <a href="{{route('delete.product',$row->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                <a href="{{route('view.product',$row->id)}}" class="btn btn-success"><i class="fa fa-eye"></i></a>
+                                <a href="{{route('edit.product',$row->id)}}" class="btn btn-outline-primary"><i class="fa fa-pencil"></i></a>
+                                <a href="#" data-href="{{$row->id}}" class="btn btn-outline-danger"data-toggle="modal" data-target="#logoutModal"><i class="fa fa-trash"></i></a>
+                                <a href="{{route('view.product',$row->id)}}" class="btn btn-outline-success"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr> 
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Select "DELETE" below if you are delete this Data.
+            <form action="{{route('delete.product')}}" method="POST">
+                @csrf
+                <input type="hidden" id="input" name="id" value="">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -24,7 +24,7 @@
             <div class="row">
                 <h4 class="col-md-6">Daily Attendence</h4>
                 <div class="col-md-6">
-                    <a href="{{route('all.attendence')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> All Attendence</a>
+                    <a href="{{route('all.attendence')}}" class="btn btn-primary btn-sm float-right"> All Attendence</a>
                 </div>
             </div>
         </div>
@@ -47,15 +47,14 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$row->name}}</td>
                                 <td>
-                                    <img src="{{URL::to($row->photo)}}" alt="" style="height: 80px;width:80px">
+                                    <img src="{{URL::to($row->photo)}}" alt="" class="pic">
                                 </td>
                                 <td>
                                     <div class="form-group">
                                         <input type="hidden" value="{{$row->id}}" name="emp_id[]">
                                         <input type="radio" value="Present" name="attendence[{{$row->id}}]" required>  Present
                                         <input type="radio" value="Absence" name="attendence[{{$row->id}}]" > Absence
-                                        <input type="hidden" value="{{date('d/m/y')}}" name="date">
-                                        <input type="hidden" value="{{date('d_m_y')}}" name="edit_date">
+                                        <input type="hidden" value="{{date('d-m-y')}}" name="date">
                                         <input type="hidden" value="{{date('F')}}" name="month">
                                     </div>
                                 </td>
@@ -64,7 +63,7 @@
                 </tbody>
             </table>
             <div class="text-right">
-                <input type="submit" value="Add" class="btn btn-primary btn-lg">
+                <input type="submit" value="Taken" class="btn btn-primary">
             </div>
         </form>
         </div>

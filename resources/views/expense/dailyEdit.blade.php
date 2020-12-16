@@ -3,15 +3,6 @@
     <div class="container">
         <div class="row pt-3">
             <div class="col-md-8 offset-2">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{$error}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <div class="card shadow">
                     <div class="card-header cardB bg-light">
                         <div class="row">
@@ -38,7 +29,7 @@
                                 <input type="hidden" name="month" value="{{date('F')}}">
                                 <input type="hidden" name="year" value="{{date('Y')}}">
                             <div class="text-right pt-2">
-                                <input type="submit" value="Update" class="btn btn-primary btn-lg">
+                                <input type="submit" value="Update" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

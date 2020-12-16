@@ -9,7 +9,7 @@
                         <h4>Sales Success List</h4>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{route('create.sales')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> Add</a>
+                        <a href="{{route('create.sales')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> New Sale</a>
                     </div>
                 </div>
                 </div>
@@ -34,9 +34,11 @@
                                 <td>{{$row->order_date}}</td>
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->total}}</td>
-                                <td class="badge badge-pill badge-success mt-2 ml-4">{{$row->status}}</td>
                                 <td>
-                                <a href="{{route('salesSuccess.history',$row->id)}}" class="btn btn-primary"><i class="fa fa-eye"></i> View History</a>
+                                    <span class="badge badge-pill badge-success">{{$row->status}}</span>
+                                </td>
+                                <td>
+                                <a href="{{route('salesSuccess.history',$row->id)}}" class="badge badge-pill badge-primary"><i class="fa fa-eye"></i> View History</a>
                                 </td>
                             </tr> 
                             @endforeach 

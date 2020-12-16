@@ -17,14 +17,13 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('cat_id');
-            $table->foreignId('sup_id');
             $table->string('code');
-            $table->string('route');
             $table->string('buyDate');
             $table->string('expireDate');
             $table->string('buyPrice');
             $table->string('selPrice');
             $table->string('photo')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

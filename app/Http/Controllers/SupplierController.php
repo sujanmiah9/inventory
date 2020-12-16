@@ -18,14 +18,20 @@ class SupplierController extends Controller
     {
         $request->validate([
             'sup_name'=>'required',
-            'email'=>'required|unique:suppliers',
-            'phone'=>'required',
+            'email'=>'required|email|unique:suppliers,email',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:11',
+            'city'=>'required',
+            'shopName'=>'required',
             'address'=>'required',
-            'accountNumber'=>'required',
-            'accountHolder'=>'required',
-            'bankName'=>'required',
-            'bankBranch'=>'required',
             'type'=>'required',
+        ],[
+            'sup_name.required'=>'Supplier name field is empty.',
+            'email.required'=>'Email field is empty',
+            'phone.required'=>'Phone number field is empty.',
+            'city.required'=>'City field is empty',
+            'shopName.required'=>'Company Name field is empty',
+            'type.required'=>'Supplier type field is empty.',
+            'address.required'=>'Address field is empty',
         ]);
 
         $data = [
@@ -34,10 +40,6 @@ class SupplierController extends Controller
             'phone'=>$request->phone,
             'shopName'=>$request->shopName,
             'city'=>$request->city,
-            'accountNumber'=>$request->accountNumber,
-            'accountHolder'=>$request->accountHolder,
-            'bankName'=>$request->bankName,
-            'bankBranch'=>$request->bankBranch,
             'type'=>$request->type,
             'address'=>$request->address,
         ];
@@ -98,13 +100,13 @@ class SupplierController extends Controller
         return view('supplier.viewSupplier', compact('viewSupplier'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $deleteSupplier = Supplier::find($id);
+        $deleteSupplier = Supplier::find($request->id);
         $delete = $deleteSupplier->delete();
         if($delete){
             $notification = array(
-                'message'=>'Data Deleted Successfull!',
+                'message'=>'Delete Successfull!',
                 'alert-type'=>'success',
             );
             return Redirect()->back()->with($notification);
@@ -128,10 +130,6 @@ class SupplierController extends Controller
             'phone'=>$request->phone,
             'shopName'=>$request->shopName,
             'city'=>$request->city,
-            'accountNumber'=>$request->accountNumber,
-            'accountHolder'=>$request->accountHolder,
-            'bankName'=>$request->bankName,
-            'bankBranch'=>$request->bankBranch,
             'type'=>$request->type,
             'address'=>$request->address,
         ];

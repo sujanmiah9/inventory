@@ -18,7 +18,7 @@
                         <table class="table table-bordered table-hover table-striped">
                             <tr>
                                 <th>Name</th>
-                                <td>{{$viewSupplier->name}}</td>
+                                <td>{{$viewSupplier->sup_name}}</td>
                             </tr>
                             <tr>
                                 <th>Email</th>
@@ -27,6 +27,10 @@
                             <tr>
                                 <th>Phone</th>
                                 <td>{{$viewSupplier->phone}}</td>
+                            </tr>
+                            <tr>
+                                <th>Supplier Type</th>
+                                <td>{{$viewSupplier->type}}</td>
                             </tr>
                             <tr>
                                 <th>Address</th>
@@ -39,26 +43,6 @@
                             <tr>
                                 <th>Shop Name</th>
                                 <td>{{$viewSupplier->shopName}}</td>
-                            </tr>
-                            <tr>
-                                <th>Account Holder</th>
-                                <td>{{$viewSupplier->accountHolder}}</td>
-                            </tr>
-                            <tr>
-                                <th>Account Number</th>
-                                <td>{{$viewSupplier->accountNumber}}</td>
-                            </tr>
-                            <tr>
-                                <th>Bank Name</th>
-                                <td>{{$viewSupplier->bankName}}</td>
-                            </tr>
-                            <tr>
-                                <th>Bank Branch</th>
-                                <td>{{$viewSupplier->bankBranch}}</td>
-                            </tr>
-                            <tr>
-                                <th>Supplier Type</th>
-                                <td>{{$viewSupplier->type}}</td>
                             </tr>
                             <tr>
                                 <th>Photo</th>

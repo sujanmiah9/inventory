@@ -15,21 +15,25 @@ class CustomerController extends Controller
 
     public function index()
     {
-        $customer = Customer::select('name', 'phone', 'address', 'city', 'photo','id')->get();
+        $customer = Customer::select('name', 'phone', 'address', 'city', 'photo','id')->orderBy('id','desc')->get();
         return view('customer.index', compact('customer'));
     }
     public function store(Request $request){
         $request->validate([
             'name'=>'required',
-            'email'=>'required',
-            'phone'=>'required',
+            'email'=>'required|email|unique:customers,email',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:11',
             'shopName'=>'required',
             'city'=>'required',
-            'accountNumber'=>'required',
-            'accountHolder'=>'required',
-            'bankName'=>'required',
-            'bankBranch'=>'required',
             'address'=>'required',
+        ],[
+            'name.required'=>'Customer name field is empty.',
+            'email.required'=>'Email field is empty',
+            'phone.required'=>'Phone number field is empty.',
+            'phone.min'=>'Phone number input maximum 11 character',
+            'city.required'=>'City field is empty',
+            'shopName.required'=>'Company Name field is empty',
+            'address.required'=>'Address field is empty',
         ]);
 
         $data = [
@@ -38,10 +42,6 @@ class CustomerController extends Controller
             'phone'=>$request->phone,
             'shopName'=>$request->shopName,
             'city'=>$request->city,
-            'accountNumber'=>$request->accountNumber,
-            'accountHolder'=>$request->accountHolder,
-            'bankName'=>$request->bankName,
-            'bankBranch'=>$request->bankBranch,
             'address'=>$request->address
         ];
         $img =$request-> file('photo');
@@ -96,9 +96,9 @@ class CustomerController extends Controller
         return view('customer.view', compact('viewCustomer'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $deleteCustomer = Customer::find($id);
+        $deleteCustomer = Customer::find($request->id);
         $delete = $deleteCustomer->delete();
         if($delete){
             $notification = array(
@@ -124,10 +124,6 @@ class CustomerController extends Controller
             'phone'=>$request->phone,
             'shopName'=>$request->shopName,
             'city'=>$request->city,
-            'accountNumber'=>$request->accountNumber,
-            'accountHolder'=>$request->accountHolder,
-            'bankName'=>$request->bankName,
-            'bankBranch'=>$request->bankBranch,
             'address'=>$request->address
         ];
         $img =$request-> file('photo');

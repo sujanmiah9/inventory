@@ -20,10 +20,6 @@ class CreateCustomersTable extends Migration
             $table->string('phone');
             $table->string('shopName');
             $table->string('city');
-            $table->string('accountNumber');
-            $table->string('accountHolder');
-            $table->string('bankName');
-            $table->string('bankBranch');
             $table->string('address');
             $table->string('photo')->nullable();
             $table->timestamps();

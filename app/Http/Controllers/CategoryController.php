@@ -18,6 +18,8 @@ class CategoryController extends Controller
     {
         $request->validate([
             'cat_name'=>'required',
+        ],[
+            'cat_name.required'=>'Category name is empty.',
         ]);
 
         $data = [
@@ -54,9 +56,9 @@ class CategoryController extends Controller
         return view('category.viewCategory', compact('viewCategory'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $deleteCategory = Category::find($id);
+        $deleteCategory = Category::find($request->id);
         $delete = $deleteCategory->delete();
         if($delete){
             $notification = array(

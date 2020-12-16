@@ -20,6 +20,9 @@ class CreateOrderDetailsTable extends Migration
             $table->string('quantity');
             $table->string('unit_cost');
             $table->string('total');
+            $table->string('order_date');
+            $table->string('profit');
+            $table->string('description');
             $table->timestamps();
         });
     }

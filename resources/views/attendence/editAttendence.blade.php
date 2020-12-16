@@ -24,7 +24,7 @@
             <div class="row">
                 <h4 class="col-md-6">Update Attendence</h4>
                 <div class="col-md-6">
-                    <a href="{{route('all.attendence')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> All Attendence</a>
+                    <a href="{{route('all.attendence')}}" class="btn btn-primary btn-sm float-right"> All Attendence</a>
                 </div>
             </div>
         </div>
@@ -41,30 +41,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
-                        @foreach ($employee as $key=> $row)
-                            <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{$row->name}}</td>
-                                <td>
-                                    <img src="{{URL::to($row->photo)}}" alt="" style="height: 80px;width:80px">
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="hidden" value="{{$row->id}}" name="id[]">
-                                        <input type="radio" value="Present" <?php if($row->attendence == 'Present') echo "checked" ?> name="attendence[{{$row->id}}]"> Present
-                                        <input type="radio" value="Absence" <?php if($row->attendence == 'Absence') echo "checked" ?> name="attendence[{{$row->id}}]"> Absence
-                                        <input type="hidden" value="{{date('d/m/y')}}" name="date">
-                                        <input type="hidden" value="{{date('d_m_y')}}" name="edit_date">
-                                        <input type="hidden" value="{{date('F')}}" name="month">
-                                    </div>
-                                </td>
-                            </tr> 
-                        @endforeach
+                    @foreach ($employee as $key=> $row)
+                        <tr>
+                            <td>{{$key+1}}</td>
+                            <td>{{$row->name}}</td>
+                            <td>
+                                <img src="{{URL::to($row->photo)}}" alt="employee Pic" class="pic">
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="hidden" value="{{$row->id}}" name="id[]">
+                                    <input type="radio" value="Present" <?php if($row->attendence == 'Present') echo "checked" ?> name="attendence[{{$row->id}}]"> Present
+                                    <input type="radio" value="Absence" <?php if($row->attendence == 'Absence') echo "checked" ?> name="attendence[{{$row->id}}]"> Absence
+                                    <input type="hidden" value="{{date('d-m-y')}}" name="date">
+                                    <input type="hidden" value="{{date('F')}}" name="month">
+                                </div>
+                            </td>
+                        </tr> 
+                    @endforeach
                 </tbody>
             </table>
             <div class="text-right">
-                <input type="submit" value="Update" class="btn btn-primary btn-lg">
+                <input type="submit" value="Update" class="btn btn-primary">
             </div>
         </form>
         </div>

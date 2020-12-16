@@ -20,4 +20,9 @@ class purchaseDetails extends Model
     {
         return $this->belongsTo(Product::class, 'product_id','id');
     }
+
+    public function Stock()
+    {
+        return $this->hasMany(Stock::class);
+    }
 }

@@ -9,7 +9,7 @@
                         <h4>Purchase List</h4>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{route('create.purchase')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> Add</a>
+                        <a href="{{route('create.purchase')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> New Purchase</a>
                     </div>
                 </div>
                 </div>
@@ -34,7 +34,7 @@
                                 <td>{{$row->supplier->sup_name}}</td>
                                 <td>{{$row->total}}</td>
                                 <td>
-                                <a href="{{route('purchase.history',$row->id)}}" class="btn btn-success"><i class="fa fa-eye"></i> View Purchase History</a>
+                                <a href="{{route('purchase.history',$row->id)}}" class="badge badge-pill badge-success"><i class="fa fa-eye"></i> View Purchase History</a>
                                 </td>
                             </tr> 
                             @endforeach 

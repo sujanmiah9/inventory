@@ -38,18 +38,8 @@ $total = DB::table('expenses')->where('year',$year)->sum('amount');
                         <th>Details</th>
                         <th>Amount</th>
                         <th>Date</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Sr</th>
-                        <th>Details</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     @foreach ($yearEx as $key=> $row)
                         <tr>
@@ -57,10 +47,6 @@ $total = DB::table('expenses')->where('year',$year)->sum('amount');
                             <td>{{$row->detail}}</td>
                             <td>{{$row->amount}}</td>
                             <td>{{$row->date}}</td>
-                            <td>
-                                <a href="{{route('yearEdit.expense',$row->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                                <a href="{{route('delete.yearEx', $row->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                            </td>
                         </tr> 
                     @endforeach
                 </tbody>

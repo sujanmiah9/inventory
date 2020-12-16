@@ -19,24 +19,42 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345'), // password
             'status' => 1,
+            'parmanent_address'=>'Chaiterpara, kaligonj, gazipur',
+            'present_address'=>'As Above',
+            'DOB'=>'01/01/2000',
+            'gender'=>'Male',
+            'mertal_satus'=>'Married',
+            'nationality'=>'Bangladesh',
             'photo'=>'upload/5fc3341d9ad9b.png',
             
         ]);
 
         User::create([
-            'name' =>'Nehal',
+            'name' =>'Nehal Ahmed',
             'email' => 'nehal@gmail.com',
             'password' => bcrypt('12345'), // password
             'status' => 1,
+            'parmanent_address'=>'Chaiterpara, kaligonj, gazipur',
+            'present_address'=>'As Above',
+            'DOB'=>'01/01/2000',
+            'gender'=>'Male',
+            'mertal_satus'=>'Married',
+            'nationality'=>'Bangladesh',
             'photo'=>'upload/nehal.JPG',
             
         ]);
 
         User::create([
-            'name' =>'Sujan',
+            'name' =>'Sujan Miah',
             'email' => 'sujan@gmail.com',
             'password' => bcrypt('12345'), // password
             'status' => 1,
+            'parmanent_address'=>'Chaiterpara, kaligonj, gazipur',
+            'present_address'=>'As Above',
+            'DOB'=>'01/01/2000',
+            'gender'=>'Male',
+            'mertal_satus'=>'Married',
+            'nationality'=>'Bangladesh',
             'photo'=>'upload/sujan.jpg',
             
         ]);
@@ -46,6 +64,12 @@ class UserSeeder extends Seeder
             'email' => 'rafsan@gmail.com',
             'password' => bcrypt('12345'), // password
             'status' => 1,
+            'parmanent_address'=>'Chaiterpara, kaligonj, gazipur',
+            'present_address'=>'As Above',
+            'DOB'=>'01/01/2000',
+            'gender'=>'Male',
+            'mertal_satus'=>'Married',
+            'nationality'=>'Bangladesh',
             'photo'=>'upload/rafsan.jpg',
             
         ]);
@@ -55,6 +79,12 @@ class UserSeeder extends Seeder
             'email' => 'roni@gmail.com',
             'password' => bcrypt('12345'), // password
             'status' => 1,
+            'parmanent_address'=>'Chaiterpara, kaligonj, gazipur',
+            'present_address'=>'As Above',
+            'DOB'=>'01/01/2000',
+            'gender'=>'Male',
+            'mertal_satus'=>'Married',
+            'nationality'=>'Bangladesh',
             'photo'=>'upload/roni.png',
             
         ]);
@@ -64,6 +94,12 @@ class UserSeeder extends Seeder
             'email' => 'mubarok@gmail.com',
             'password' => bcrypt('12345'), // password
             'status' => 1,
+            'parmanent_address'=>'Chaiterpara, kaligonj, gazipur',
+            'present_address'=>'As Above',
+            'DOB'=>'01/01/2000',
+            'gender'=>'Male',
+            'mertal_satus'=>'Married',
+            'nationality'=>'Bangladesh',
             'photo'=>'upload/mubarok.png',
             
         ]);

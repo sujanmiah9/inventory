@@ -18,7 +18,11 @@ class ExpenseController extends Controller
     {   
         $request->validate([
             'detail'=>'required',
-            'amount'=>'required',
+            'amount'=>'required|numeric',
+        ],[
+            'detail.required'=>'Detail field is empty.',
+            'amount.required'=>'Amount field is empty.',
+            'amount.numeric'=>'The amount field must be a number.',
         ]);
 
         $data = [
@@ -87,13 +91,13 @@ class ExpenseController extends Controller
         }
     }
 
-    public function destroyDaily($id)
+    public function destroyDaily(Request $request)
     {
-        $deleteDaily = Expense::find($id);
+        $deleteDaily = Expense::find($request->id);
         $d_delete = $deleteDaily->delete();
         if($d_delete){
             $notification = array(
-                'message'=>'Data Delete Successfull!',
+                'message'=>'Delete Successfull!',
                 'alert-type'=>'success',
             );
             return Redirect()->back()->with($notification);
@@ -107,103 +111,10 @@ class ExpenseController extends Controller
         return view('expense.monthlyExpense', compact('monthEx'));
     }
 
-    public function monthEdit($id)
-    {
-        $monthEdit = Expense::find($id);
-        return view('expense.monthEdit', compact('monthEdit'));
-    }
-
-    public function monthUpdate(Request $request, $id)
-    {
-        $monthUpdate = Expense::find($id);
-        $data = [
-            'detail'=>$request->detail,
-            'amount'=>$request->amount,
-        ];
-        $m_update = $monthUpdate->update($data);
-        try
-        {
-            if($m_update){
-                $notification = array(
-                    'message'=>'Data Update Successfull!',
-                    'alert-type'=>'success',
-                );
-                return Redirect()->route('monthly.expense')->with($notification);
-            }
-        }catch(Throwable $Exception)
-        {
-            $notification = array(
-                'message'=>'Something is Wrong !!',
-                'alert-type'=>'error',
-            );
-            return Redirect()->back()->with($notification);
-        }
-    }
-
-    public function destroyMonth($id)
-    {
-        $deleteMonth = Expense::find($id);
-        $m_delete = $deleteMonth->delete();
-        if($m_delete){
-            $notification = array(
-                'message'=>'Data Delete Successfull!',
-                'alert-type'=>'success',
-            );
-            return Redirect()->back()->with($notification);
-        }
-    }
-
     public function yearly()
     {
         $year = date('Y');
         $yearEx = Expense::where('year',$year)->get();
         return view('expense.yearlyExpense', compact('yearEx'));
-    }
-
-    public function yearEdit($id)
-    {
-        $yearEdit = Expense::find($id);
-        return view('expense.yearEdit', compact('yearEdit'));
-    }
-
-    public function yearUpdate(Request $request, $id)
-    {
-        $yearUpdate = Expense::find($id);
-        $data = [
-            'detail'=>$request->detail,
-            'amount'=>$request->amount,
-        ];
-        $y_update = $yearUpdate->update($data);
-        try
-        {
-            if($y_update){
-                $notification = array(
-                    'message'=>'Data Update Successfull!',
-                    'alert-type'=>'success',
-                );
-                return Redirect()->route('monthly.expense')->with($notification);
-            }
-            return Redirect()->route('yearly.expense')->with('message', 'Update Successfull!');
-        }catch(Throwable $Exception)
-        {
-            $notification = array(
-                'message'=>'Something is Wrong !!',
-                'alert-type'=>'error',
-            );
-            return Redirect()->back()->with($notification);
-        }
-    }
-
-    public function destroyYear($id)
-    {
-        $deleteYear = Expense::find($id);
-        $y_delete = $deleteYear->delete();
-        if($y_delete){
-            $notification = array(
-                'message'=>'Data Delete Successfull!',
-                'alert-type'=>'success',
-            );
-            return Redirect()->back()->with($notification);
-        }
     }
 }

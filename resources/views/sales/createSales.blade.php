@@ -30,18 +30,21 @@
                                                     <th>Aciton</th>
                                                 </tr>
                                             </thead>
-                                            
                                             @php
                                                 $prod = Cart::content();
                                             @endphp
-                                        
+                                        <tbody>
                                             @foreach ($prod as $row)
+                                            <tr class="odd">
+                                            </tr>
                                                 <tr>
+                                                    
                                                     <td>{{$row->name}}</td>
                                                     <td>
-                                                    <form action="{{route('cart.update',$row->rowId)}}" method="POST">
+                                                    <form action="{{route('cart.update1',$row->rowId)}}" method="POST">
                                                         @csrf
                                                             <input type="number" style="width:75px" value="{{$row->qty}}" name="qty">
+                                                            <input type="hidden" value="{{$row->id}}" name="product_id">
                                                             <button class="btn btn-success" style="padding: .2rem; margin-left:5px;"> <i class="fa fa-check"></i> </button>
                                                     </form>
                                                     </td>
@@ -65,15 +68,6 @@
                                         </div>
                                     </div>
                                     <div class=" pt-3">
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
                                         <form action="{{route('invoice.sales')}}" method="POST">
                                             @csrf
                                             <div class="form-group">
@@ -126,6 +120,7 @@
                                                         <input type="hidden" name="name" value="{{$row->name}}">
                                                         <input type="hidden" name="unit" value="{{$row->selPrice}}">
                                                         <input type="hidden" name="qty" value="1">
+                                                        <input type="hidden" name="description" value="{{$row->description}}">
                                                         <button class="btn btn-success" style="padding: .rem; margin-left:5px;"> <i class="fa fa-plus"></i> </button>
                                                     </form>
                                                 </td>
@@ -155,47 +150,44 @@
             <form action="{{route('store.customer')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="">Customer Name</label>
-                    <input type="text" class="form-control" name="name">
+                    <label for="">Customer Name</label><span class="span_star_message"> *</span>
+                    <input type="text" class="form-control" name="name" value="{{old('name')}}">
+                    @error('name')
+                        <span class="span_star_message">{{$message}}</span>
+                    @enderror
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="">Email</label>
-                        <input type="email" class="form-control" name="email">
+                        <label for="">Email</label><span class="span_star_message"> *</span>
+                        <input type="email" class="form-control" name="email" value="{{old('email')}}">
+                    @error('email')
+                        <span class="span_star_message">{{$message}}</span>
+                    @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="">Phone</label>
-                        <input type="text" name="phone" class="form-control">
+                        <label for="">Phone</label><span class="span_star_message"> *</span>
+                        <input type="text" name="phone" class="form-control" value="{{old('phone')}}">
+                        <small>Only number type support.</small>
+                    @error('phone')
+                        <span class="span_star_message">{{$message}}</span>
+                    @enderror
                     </div>
+                    
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="">Shopname</label>
-                        <input type="text" name="shopName" class="form-control">
+                        <label for="">Shopname</label><span class="span_star_message"> *</span>
+                        <input type="text" name="shopName" class="form-control" value="{{old('shopName')}}">
+                    @error('shopName')
+                        <span class="span_star_message">{{$message}}</span>
+                    @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="">City</label>
-                        <input type="text" class="form-control" name="city">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="">Account Number</label>
-                        <input type="text" class="form-control" name="accountNumber">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="">Account Holder</label>
-                        <input type="text" class="form-control" name="accountHolder">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="">Bank Name</label>
-                        <input type="text" class="form-control" name="bankName">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="">Bank Branch</label>
-                        <input type="text" class="form-control" name="bankBranch">
+                        <label for="">City</label><span class="span_star_message"> *</span>
+                        <input type="text" class="form-control" name="city" value="{{old('city')}}">
+                    @error('city')
+                        <span class="span_star_message">{{$message}}</span>
+                    @enderror
                     </div>
                 </div>
                 <div class="form-group">
@@ -203,11 +195,14 @@
                     <input type="file" class="form-control" name="photo">
                 </div>
                 <div class="form-gorup">
-                    <label for="">Address</label>
-                    <textarea name="address" id="" cols="30" rows="3" class="form-control"></textarea>
+                    <label for="">Address</label><span class="span_star_message"> *</span>
+                    <textarea name="address" id="" cols="30" rows="3" class="form-control" >{{old('address')}}</textarea>
                 </div>
+                @error('address')
+                        <span class="span_star_message">{{$message}}</span>
+                    @enderror
                 <div class="text-right pt-2">
-                    <input type="submit" value="Add" class="btn btn-primary btn-lg">
+                    <input type="submit" value="Add" class="btn btn-primary">
                 </div>
             </form>
         </div>

@@ -19,6 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('status')->default('1');
+            $table->text('parmanent_address');
+            $table->text('present_address');
+            $table->string('DOB');
+            $table->string('gender');
+            $table->string('mertal_satus');
+            $table->string('nationality');
             $table->string('photo')->nullable();
             $table->timestamps();
         });

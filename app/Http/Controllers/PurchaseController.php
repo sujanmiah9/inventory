@@ -9,6 +9,8 @@ use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Models\purchaseDetails;
+use App\Models\Stock;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -25,8 +27,8 @@ class PurchaseController extends Controller
     }
 
     public function detail(){
-        $purchase = Purchase::with('supplier')->get();
-        return view('purchase.detailPurchase',compact('purchase'));
+        $purchase = Purchase::with('supplier')->orderBy('id', 'desc')->get();
+        return view('purchase.purchaseSuccess',compact('purchase'));
     }
 
     public function addCart(Request $request){
@@ -37,6 +39,9 @@ class PurchaseController extends Controller
             'qty'=>$request->qty,
             'price'=>$request->unit,
             'weight'=>'0',
+            'options'=>[
+                'description'=>$request->description,
+            ]
         ];
         $add = Cart::add($data);
         if($add){
@@ -54,7 +59,7 @@ class PurchaseController extends Controller
         }
     
     }
-    public function cartUpdate(Request $request, $rowId ){
+    public function cartUpdate2(Request $request, $rowId ){
         $cartUpdate = $request->qty;
         $update = Cart::update($rowId, $cartUpdate);
         if($update){
@@ -98,7 +103,8 @@ class PurchaseController extends Controller
         $id = $request->sup_id;
         $supplier = Supplier::where('id',$id)->first();
         $content = Cart::content();
-        return view('purchase.invoicePurchase',compact('content','supplier'));
+        $shopdetails = Setting::first();
+        return view('purchase.invoicePurchase',compact('content','supplier','shopdetails'));
     }
 
     public function storePurchase(Request $request)
@@ -125,25 +131,36 @@ class PurchaseController extends Controller
             $pdata['quantity']=$content->qty;
             $pdata['unit_cost']=$content->price;
             $pdata['total']=$content->total;
+            $pdata['purchase_date']=$request->purchase_date;
+            $pdata['description']=$content->options->description;
 
-            $insert = purchaseDetails::insert($pdata);
+          
+            $purchasedetail_id = purchaseDetails::insertGetId($pdata);
+            
         }
-        try{
-            if($insert){
-                Cart::destroy();
-                $notification = array(
-                    'message'=>'Purchase Successfull!',
-                    'alert-type'=>'success',
-                );
-                return Redirect()->route('create.purchase')->with($notification);
+        
+        foreach($contents as $content){
+            $qdata = [
+                'purchase_id'=>$purchase_id,
+                'purchasedetail_id'=>$purchasedetail_id,
+                'product_id'=>$content->id,
+                'quantity'=>$content->qty,
+            ];
+            $check = Stock::where('product_id', $content->id)->first();
+            if($check){
+                $increment = Stock::find($check->id)->increment('quantity', $content->qty);
+            }else{
+                $success = Stock::insert($qdata);
             }
-        }catch(Throwable $exception){
-            $notification = array(
-                'message'=>'Somthing is Wrong!',
-                'alert-type'=>'error',
-            );
-            return Redirect()->route('create.purchase')->with($notification);
+            
         }
+        Cart::destroy();
+        $notification = array(
+            'message'=>'Product Purchase Successfull',
+            'alert-type'=>'success',
+        );
+        return redirect()->route('create.purchase')->with($notification);
+        
     }
 
     public function purchaseHistory($id)
@@ -154,8 +171,10 @@ class PurchaseController extends Controller
                 ->first();
         
         $purchaseDetails =purchaseDetails::where('purchase_id',$id)->with('product')->get();
+
+        $shopdetails = Setting::first();
         
-        return view('purchase.purchaseHistory', compact('purchase','purchaseDetails'));
+        return view('purchase.purchaseHistory', compact('purchase','purchaseDetails','shopdetails'));
         
     }
 }

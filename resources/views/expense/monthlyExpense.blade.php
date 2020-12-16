@@ -38,18 +38,8 @@
                         <th>Details</th>
                         <th>Amount</th>
                         <th>Date</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Sr</th>
-                        <th>Details</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     @foreach ($monthEx as $key=> $row)
                         <tr>
@@ -57,10 +47,6 @@
                             <td>{{$row->detail}}</td>
                             <td>{{$row->amount}}</td>
                             <td>{{$row->date}}</td>
-                            <td>
-                                <a href="{{route('monthEdit.expense',$row->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                                <a href="{{route('delete.monthEx', $row->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                            </td>
                         </tr> 
                     @endforeach
                 </tbody>

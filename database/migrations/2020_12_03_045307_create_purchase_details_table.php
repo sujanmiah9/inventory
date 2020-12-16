@@ -20,6 +20,8 @@ class CreatePurchaseDetailsTable extends Migration
             $table->string('quantity');
             $table->string('unit_cost');
             $table->string('total');
+            $table->string('purchase_date');
+            $table->string('description');
             $table->timestamps();
         });
     }

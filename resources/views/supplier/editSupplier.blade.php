@@ -17,14 +17,24 @@
                     <div class="card-body">
                         <form action="{{route('update.supplier',$editSupplier->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="">Supplier Name</label>
-                                <input type="text" class="form-control" name="sup_name" value="{{$editSupplier->sup_name}}">
-                            </div>
                             <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Supplier Name</label>
+                                    <input type="text" class="form-control" name="sup_name" value="{{$editSupplier->sup_name}}">
+                                </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Supplier Email</label>
                                     <input type="email" class="form-control" name="email" value="{{$editSupplier->email}}">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Supplier Type</label>
+                                    <select name="type" class="form-control">
+                                        <option value="Distributor" {{($editSupplier->type) == 'Distributor' ? 'selected': '' }}>Distributor</option>
+                                        <option value="Whole Sailer" {{($editSupplier->type) == 'Whole Sailer' ? 'selected': '' }}>Whole Sailer</option>
+                                        <option value="Brochure" {{($editSupplier->type) == 'Brochure' ? 'selected': '' }}>Brochure</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Supplier Phone</label>
@@ -43,34 +53,6 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Account Number</label>
-                                    <input type="text" class="form-control" name="accountNumber" value="{{$editSupplier->accountNumber}}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">Account Holder</label>
-                                    <input type="text" class="form-control" name="accountHolder" value="{{$editSupplier->accountHolder}}">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="">Bank Name</label>
-                                    <input type="text" class="form-control" name="bankName" value="{{$editSupplier->bankName}}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">Bank Branch</label>
-                                    <input type="text" class="form-control" name="bankBranch" value="{{$editSupplier->bankBranch}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Supplier Type</label>
-                                <select name="type" class="form-control">
-                                    <option value="Distributor">Distributor</option>
-                                    <option value="Whole Sailer">Whole Sailer</option>
-                                    <option value="Brochure">Brochure</option>
-                                </select>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
                                     <label for="">Upload New Photo</label>
                                     <input type="file" class="form-control" name="photo" >
                                 </div>
@@ -84,7 +66,7 @@
                                 <textarea name="address" id="" cols="30" rows="3" class="form-control"> {{$editSupplier->address}}</textarea>
                             </div>
                             <div class="text-right pt-2">
-                                <input type="submit" value="Update" class="btn btn-primary btn-lg">
+                                <input type="submit" value="Update" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

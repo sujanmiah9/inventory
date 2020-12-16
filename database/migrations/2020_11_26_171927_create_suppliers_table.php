@@ -20,10 +20,6 @@ class CreateSuppliersTable extends Migration
             $table->string('phone');
             $table->string('shopName')->nullable();
             $table->string('city');
-            $table->string('accountNumber');
-            $table->string('accountHolder');
-            $table->string('bankName');
-            $table->string('bankBranch');
             $table->string('type');
             $table->string('address');
             $table->string('photo')->nullable();

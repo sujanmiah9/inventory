@@ -4,198 +4,198 @@
     <div class="row">
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-success color-white widget-stat">
-                <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">201</h2>
-                    <div class="m-b-5">NEW ORDERS</div><i class="ti-shopping-cart widget-stat-icon"></i>
-                    <div><i class="fa fa-level-up m-r-5"></i><small>25% higher</small></div>
+                <div class="ibox-body pb-2 pt-4">
+                    <h2 class="m-b-5" style="font-weight: bold; font-size:45px;" >{{$daily_purchase}}</h2>
+                    <div class="m-b-5" style="font-size:20px;">Daily Purchases</div><i class="fa fa-shopping-basket widget-stat-icon"></i>
+                </div>
+                <div class="ibox-footer pl-4 pr-4" style="background-color: #009432;">
+                    <a href="" class="text-white">
+                        <div class="row">
+                            <div class="col-6">View</div>
+                            <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
+                        </div>
+                        </a>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-info color-white widget-stat">
-                <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">1250</h2>
-                    <div class="m-b-5">UNIQUE VIEWS</div><i class="ti-bar-chart widget-stat-icon"></i>
-                    <div><i class="fa fa-level-up m-r-5"></i><small>17% higher</small></div>
+                <div class="ibox-body pb-2 pt-4">
+                    <h2 class="m-b-5 "style="font-weight: bold; font-size:45px;" >{{$daily_sales}}</h2>
+                    <div class="m-b-5" style="font-size:20px;">Daily Sales</div><i class="fa fa-universal-access widget-stat-icon"></i>
+                </div>
+                <div class="ibox-footer pl-4 pr-4" style="background-color: #2fb4f1;">
+                    <a href="" class="text-white">
+                        <div class="row">
+                            <div class="col-6">View</div>
+                            <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
+                        </div>
+                        </a>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-warning color-white widget-stat">
-                <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">$1570</h2>
-                    <div class="m-b-5">TOTAL INCOME</div><i class="fa fa-money widget-stat-icon"></i>
-                    <div><i class="fa fa-level-up m-r-5"></i><small>22% higher</small></div>
+                <div class="ibox-body pb-2 pt-4">
+                    <h2 class="m-b-5 "style="font-weight: bold; font-size:45px;" >{{$daily_expenses}}</h2>
+                    <div class="m-b-5" style="font-size:20px;">Daily Expensive</div><i class="fa fa-money widget-stat-icon"></i>
+                </div>
+                <div class="ibox-footer pl-4 pr-4" style="background-color: #f3ad16;">
+                    <a href="" class="text-white">
+                        <div class="row">
+                            <div class="col-6">View</div>
+                            <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
+                        </div>
+                        </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="ibox bg-primary color-white widget-stat">
+                <div class="ibox-body pb-2 pt-4">
+                    <h2 class="m-b-5 "style="font-weight: bold; font-size:45px;" >{{$profit}}</h2>
+                    <div class="m-b-5" style="font-size:20px;">Total Profit</div><i class="fa fa-money widget-stat-icon"></i>
+                </div>
+                <div class="ibox-footer pl-4 pr-4" style="background-color: #6792e2;">
+                    <a href="" class="text-white">
+                        <div class="row">
+                            <div class="col-6">View</div>
+                            <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
+                        </div>
+                        </a>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-danger color-white widget-stat">
-                <div class="ibox-body">
-                    <h2 class="m-b-5 font-strong">108</h2>
-                    <div class="m-b-5">NEW USERS</div><i class="ti-user widget-stat-icon"></i>
-                    <div><i class="fa fa-level-down m-r-5"></i><small>-12% Lower</small></div>
+                <div class="ibox-body pb-2 pt-4">
+                    <h2 class="m-b-5 "style="font-weight: bold; font-size:45px;" >{{$total_product}}</h2>
+                    <div class="m-b-5" style="font-size:20px;">Total Product</div><i class="fa fa-product-hunt widget-stat-icon"></i>
+                </div>
+                <div class="ibox-footer pl-4 pr-4" style="background-color: #b30f0f;">
+                    <a href="" class="text-white">
+                        <div class="row">
+                            <div class="col-6">View</div>
+                            <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
+                        </div>
+                        </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="ibox bg-dark color-white widget-stat">
+                <div class="ibox-body pb-2 pt-4">
+                    <h2 class="m-b-5 "style="font-weight: bold; font-size:45px;" >{{$total_category}}</h2>
+                    <div class="m-b-5" style="font-size:20px;">Total Category</div><i class="fa fa-crosshairs widget-stat-icon"></i>
+                </div>
+                <div class="ibox-footer pl-4 pr-4" style="background-color: #000000;">
+                    <a href="" class="text-white">
+                        <div class="row">
+                            <div class="col-6">View</div>
+                            <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
+                        </div>
+                        </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="ibox bg-success color-white widget-stat">
+                <div class="ibox-body pb-2 pt-4">
+                    <h2 class="m-b-5 "style="font-weight: bold; font-size:45px;" >{{$total_employee}}</h2>
+                    <div class="m-b-5" style="font-size:20px;">Total Employee</div><i class="fa fa-user-circle widget-stat-icon"></i>
+                </div>
+                <div class="ibox-footer pl-4 pr-4" style="background-color: #05802e;">
+                    <a href="" class="text-white">
+                        <div class="row">
+                            <div class="col-6">View</div>
+                            <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
+                        </div>
+                        </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="ibox bg-danger color-white widget-stat">
+                <div class="ibox-body pb-2 pt-4">
+                    <h2 class="m-b-5 "style="font-weight: bold; font-size:45px;" >{{$daily_present}}</h2>
+                    <div class="m-b-5" style="font-size:20px;">Present Employee</div><i class="fa fa-user widget-stat-icon"></i>
+                </div>
+                <div class="ibox-footer pl-4 pr-4" style="background-color: #b30f0f;">
+                    <a href="" class="text-white">
+                        <div class="row">
+                            <div class="col-6">View</div>
+                            <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
+                        </div>
+                        </a>
                 </div>
             </div>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-lg-8">
-            <div class="ibox">
-                <div class="ibox-head">
-                    <div class="ibox-title">Latest Orders</div>
-                    <div class="ibox-tools">
-                        <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
-                        <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item">option 1</a>
-                            <a class="dropdown-item">option 2</a>
-                        </div>
-                    </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header cardB">
+                    <div style="font-weight: bold">Latest Sales</div>
                 </div>
-                <div class="ibox-body">
+                <div class="card-body">
                     <table class="table table-striped table-hover">
-                        <thead>
+                        <thead class="thead-light">
                             <tr>
-                                <th>Order ID</th>
+                                <th>Sales ID</th>
                                 <th>Customer</th>
                                 <th>Amount</th>
                                 <th>Status</th>
-                                <th width="91px">Date</th>
+                                <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($latestOrder as $row)
                             <tr>
+                                <td>{{$row->order_no}}</td>
+                                <td>{{$row->customer->name}}</td>
+                                <td>{{$row->total}}</td>
                                 <td>
-                                    <a href="invoice.html">AT2584</a>
+                                    <span class="badge badge-pill badge-success">{{$row->status}}</span>
                                 </td>
-                                <td>@Jack</td>
-                                <td>$564.00</td>
-                                <td>
-                                    <span class="badge badge-success">Shipped</span>
-                                </td>
-                                <td>10/07/2017</td>
+                                <td>{{$row->order_date}}</td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <a href="invoice.html">AT2575</a>
-                                </td>
-                                <td>@Amalia</td>
-                                <td>$220.60</td>
-                                <td>
-                                    <span class="badge badge-success">Shipped</span>
-                                </td>
-                                <td>10/07/2017</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="invoice.html">AT1204</a>
-                                </td>
-                                <td>@Emma</td>
-                                <td>$760.00</td>
-                                <td>
-                                    <span class="badge badge-default">Pending</span>
-                                </td>
-                                <td>10/07/2017</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="invoice.html">AT7578</a>
-                                </td>
-                                <td>@James</td>
-                                <td>$87.60</td>
-                                <td>
-                                    <span class="badge badge-warning">Expired</span>
-                                </td>
-                                <td>10/07/2017</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="invoice.html">AT0158</a>
-                                </td>
-                                <td>@Ava</td>
-                                <td>$430.50</td>
-                                <td>
-                                    <span class="badge badge-default">Pending</span>
-                                </td>
-                                <td>10/07/2017</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="invoice.html">AT0127</a>
-                                </td>
-                                <td>@Noah</td>
-                                <td>$64.00</td>
-                                <td>
-                                    <span class="badge badge-success">Shipped</span>
-                                </td>
-                                <td>10/07/2017</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="ibox">
-                <div class="ibox-head">
-                    <div class="ibox-title">Best Sellers</div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header cardB">
+                    <div style="font-weight: bold">Latest Purchase</div>
                 </div>
-                <div class="ibox-body">
-                    <ul class="media-list media-list-divider m-0">
-                        <li class="media">
-                            <a class="media-img" href="javascript:;">
-                            <img src="{{asset('upload')}}/5fbfca084de9d.png" width="50px;" />
-                            </a>
-                            <div class="media-body">
-                                <div class="media-heading">
-                                    <a href="javascript:;">Samsung</a>
-                                    <span class="font-16 float-right">1200</span>
-                                </div>
-                                <div class="font-13">Lorem Ipsum is simply dummy text.</div>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a class="media-img" href="javascript:;">
-                                <img src="{{asset('upload')}}/5fbfca084de9d.png" width="50px;" />
-                            </a>
-                            <div class="media-body">
-                                <div class="media-heading">
-                                    <a href="javascript:;">iPhone</a>
-                                    <span class="font-16 float-right">1150</span>
-                                </div>
-                                <div class="font-13">Lorem Ipsum is simply dummy text.</div>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a class="media-img" href="javascript:;">
-                                <img src="{{asset('upload')}}/5fbfca084de9d.png" width="50px;" />
-                            </a>
-                            <div class="media-body">
-                                <div class="media-heading">
-                                    <a href="javascript:;">iMac</a>
-                                    <span class="font-16 float-right">800</span>
-                                </div>
-                                <div class="font-13">Lorem Ipsum is simply dummy text.</div>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <a class="media-img" href="javascript:;">
-                                <img src="{{asset('upload')}}/5fbfca084de9d.png" width="50px;" />
-                            </a>
-                            <div class="media-body">
-                                <div class="media-heading">
-                                    <a href="javascript:;">apple Watch</a>
-                                    <span class="font-16 float-right">705</span>
-                                </div>
-                                <div class="font-13">Lorem Ipsum is simply dummy text.</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ibox-footer text-center">
-                    <a href="javascript:;">View All Products</a>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Purchase ID</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($latestPurchase as $row)
+                            <tr>
+                                <td>{{$row->purchase_no}}</td>
+                                <td>{{$row->supplier->sup_name}}</td>
+                                <td>{{$row->total}}</td>
+                                <td>
+                                    <span class="badge badge-pill badge-success">{{$row->status}}</span>
+                                </td>
+                                <td>{{$row->purchase_date}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

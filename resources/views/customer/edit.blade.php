@@ -53,26 +53,6 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Account Number</label>
-                                    <input type="text" class="form-control" name="accountNumber" value="{{$editCustomer->accountNumber}}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">Account Holder</label>
-                                    <input type="text" class="form-control" name="accountHolder" value="{{$editCustomer->accountHolder}}">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="">Bank Name</label>
-                                    <input type="text" class="form-control" name="bankName" value="{{$editCustomer->bankName}}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="">Bank Branch</label>
-                                    <input type="text" class="form-control" name="bankBranch" value="{{$editCustomer->bankBranch}}">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
                                     <label for="">Upload New Photo</label>
                                     <input type="file" class="form-control" name="photo" >
                                 </div>
@@ -86,7 +66,7 @@
                                 <textarea name="address" id="" cols="30" rows="3" class="form-control">{{$editCustomer->address}}</textarea>
                             </div>
                             <div class="text-right pt-2">
-                                <input type="submit" value="Add" class="btn btn-primary btn-lg">
+                                <input type="submit" value="Add" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

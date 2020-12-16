@@ -23,7 +23,7 @@
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Commany Name</label>
+                                    <label for="">Shop Name</label>
                                     <input type="text" class="form-control" name="company_name" value="{{$viewSetting->company_name}}">
                                 </div>
                                 <div class="form-group col-md-6">
@@ -70,7 +70,7 @@
                                 <textarea name="company_address" id="" cols="30" rows="3" class="form-control">{{$viewSetting->company_address}}</textarea>
                             </div>
                             <div class="text-right pt-2">
-                                <input type="submit" value="Add" class="btn btn-primary btn-lg">
+                                <input type="submit" value="Update" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

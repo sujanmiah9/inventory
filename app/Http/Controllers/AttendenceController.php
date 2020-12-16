@@ -11,18 +11,17 @@ use Throwable;
 
 class AttendenceController extends Controller
 {
-    public function dailyAttendence()
+    public function takenAttendence()
     {
         $employee = Employee::select('name', 'photo', 'id')->get();
-        return view('attendence.dailyAttendence', compact('employee'));
+        return view('attendence.takenAttendence', compact('employee'));
     }
-
+//Store Attendence
     public function storeAttendence(Request $request)
     {
         $request->validate([
             'attendence'=>'required',
         ]);
-
         $date = $request->date;
         $check = DB::table('attendences')->where('date',$date)->first();
         if($check){
@@ -39,7 +38,6 @@ class AttendenceController extends Controller
                     'emp_id'=>$id,
                     'attendence'=>$request->attendence[$id],
                     'date'=>$request->date,
-                    'edit_date'=>$request->edit_date,
                     'month'=>$request->month
                 ];
             }
@@ -57,37 +55,80 @@ class AttendenceController extends Controller
             }
         }   
     }
-
+//All Attendenc Show
     public function allAttendence()
     {  
-        $edit_date = date('d_m_y');
-        $attendence = DB::table('attendences')->select('edit_date')->groupBy('edit_date')->get();
+        $attendence = DB::table('attendences')->select('date')->groupBy('date')->get();
         return view('attendence.allAtttendence', compact('attendence'));
     }
-
-    public function editAttendence($edit_date)
+// Edit Attendence
+    public function editAttendence($date)
     {
         $employee = DB::table('attendences')
                     ->join('employees', 'attendences.emp_id', 'employees.id')
                     ->select('employees.name', 'employees.photo', 'attendences.*')
-                    ->where('edit_date',$edit_date)
+                    ->where('date',$date)
                     ->get();
         return view('attendence.editAttendence',compact('employee'));
     }
-
+// Attendence Update
     public function updateAttendence(Request $request)
     {
-    
         foreach($request->id as $id)
             {
                 $data = [
-                    'emp_id'=>$id,
                     'attendence'=>$request->attendence[$id],
                     'date'=>$request->date,
-                    'edit_date'=>$request->edit_date,
                     'month'=>$request->month
                 ];
+                $updateAttendence = Attendence::where(['date'=>$request->date,'id'=>$id])->first();
+                $update = $updateAttendence->update($data);
             }
+        if($update)
+            {
+                $notification = array(
+                    'message'=>'Successfully Attendence Update',
+                    'alert-type'=>'success',
+                );
+                return redirect()->route('all.attendence')->with($notification);
+            }
+    }
+//Delete Attendence
+    public function deleteAttendence(Request $request)
+    {
+        $deleteAttendence = Attendence::where('date', $request->id)->get();
+        foreach($deleteAttendence as $delete)
+        {
+            $deletedata = $delete->delete();
+        }
+        if($deletedata)
+        {
+            $notification = array(
+                'message'=>'Delete Attendence',
+                'alert-type'=>'success',
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
+//View Attendence
+    public function viewAttendence($date)
+    {
+        $view = DB::table('attendences')
+                    ->join('employees', 'attendences.emp_id', 'employees.id')
+                    ->select('employees.name', 'employees.photo', 'attendences.*')
+                    ->where('date',$date)
+                    ->get();
+        return view('attendence.viewAttendence',compact('view'));
+    }
 
+    public function monthlyAttendence()
+    {
+        $month = date('F');
+        $viewMonth = DB::table('attendences')
+                    ->join('employees', 'attendences.emp_id', 'employees.id')
+                    ->select('employees.name', 'employees.photo', 'attendences.*')
+                    ->where('month',$month)
+                    ->get();
+        return view('attendence.monthlyAttendence',compact('viewMonth'));
     }
 }

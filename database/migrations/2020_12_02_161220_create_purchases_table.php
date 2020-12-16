@@ -25,6 +25,7 @@ class CreatePurchasesTable extends Migration
             $table->string('payment_type');
             $table->string('pay');
             $table->string('due')->nullable();
+            $table->string('status')->default('Success');
             $table->timestamps();
         });
     }

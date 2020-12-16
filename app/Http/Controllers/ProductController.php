@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Exports\ProductsExport;
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\Models\Category;
 use App\Models\Product;
@@ -24,28 +27,26 @@ class ProductController extends Controller
         $request->validate([
             'name'=>'required',
             'cat_id'=>'required',
-            'sup_id'=>'required',
-            'code'=>'required',
-            'buyDate'=>'required',
-            'expireDate'=>'required',
-            'buyPrice'=>'required',
-            'selPrice'=>'required',
+            'code'=>'required|numeric',
+            'buyPrice'=>'required|numeric',
+            'selPrice'=>'required|numeric',
         ],[
-            'cat_id.required'=>'Category Name Not Selected',
-            'sup_id.required'=>'Supplier Name Not Selected',
-            'code.required'=>'Product code is Empty',
+            'name.required'=>'Product name is empty.',
+            'cat_id.required'=>'Category name not selected.',
+            'code.required'=>'Product code is empty.',
+            'buyPrice.required'=>'Buying price is empty.',
+            'selPrice.required'=>'Selling price is empty.',
         ]);
 
         $data = [
             'name'=>$request->name,
             'cat_id'=>$request->cat_id,
-            'sup_id'=>$request->sup_id,
             'code'=>$request->code,
-            'route'=>$request->route,
             'buyDate'=>$request->buyDate,
             'expireDate'=>$request->expireDate,
             'buyPrice'=>$request->buyPrice,
             'selPrice'=>$request->selPrice,
+            'description'=>$request->description,
         ];
         $img =$request-> file('photo');
         if($img){
@@ -95,7 +96,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $product = Product::all();
+        $product = Product::with('category')->get();
         return view('product.allProduct', compact('product'));
     }
 
@@ -103,15 +104,14 @@ class ProductController extends Controller
     {
         $viewProduct = DB::table('products')
                         ->join('categories', 'products.cat_id', 'categories.id')
-                        ->join('suppliers', 'products.sup_id', 'suppliers.id')
-                        ->select('categories.cat_name','suppliers.sup_name', 'products.*')
+                        ->select('categories.cat_name', 'products.*')
                         ->where('products.id',$id)->first();
         return view('product.viewProduct', compact('viewProduct'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $deleteProduct = Product::find($id);
+        $deleteProduct = Product::find($request->id);
         $delete = $deleteProduct->delete();
         if($delete){
             $notification = array(
@@ -138,13 +138,12 @@ class ProductController extends Controller
         $data = [
             'name'=>$request->name,
             'cat_id'=>$request->cat_id,
-            'sup_id'=>$request->sup_id,
             'code'=>$request->code,
-            'route'=>$request->route,
             'buyDate'=>$request->buyDate,
             'expireDate'=>$request->expireDate,
             'buyPrice'=>$request->buyPrice,
             'selPrice'=>$request->selPrice,
+            'description'=>$request->description,
         ];
         $img =$request-> file('photo');
         if($img){
@@ -190,6 +189,39 @@ class ProductController extends Controller
                 );
                 return Redirect()->back()->with($notification);
             }
+        }
+        
+    }
+
+    public function productImport()
+    {
+        return view('product.productImport');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+    public function import(Request $request) 
+    {
+        $request->validate([
+            'product_import'=>'required',
+        ]);
+        $success = Excel::import(new ProductsImport, $request->file('product_import'));
+        try{
+            if($success){
+                $notification = array(
+                    'message'=>'Product insert Successfull!',
+                    'alert-type'=>'success',
+                );
+                return Redirect()->back()->with($notification);
+            }
+        }catch(Throwable $exception){
+            $notification = array(
+                'message'=>'Something is Wrong!',
+                'alert-type'=>'error',
+            );
+            return Redirect()->back()->with($notification);
         }
         
     }

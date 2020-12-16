@@ -41,15 +41,6 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Sr</th>
-                        <th>Details</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     @foreach ($dailyEx as $key=> $row)
                         <tr>
@@ -58,13 +49,35 @@
                             <td>{{$row->amount}}</td>
                             <td>{{$row->date}}</td>
                             <td>
-                                <a href="{{route('dailyEdit.expense',$row->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                                <a href="{{route('delete.dailyEx', $row->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                <a href="{{route('dailyEdit.expense',$row->id)}}" class="btn btn-outline-primary"><i class="fa fa-pencil"></i></a>
+                                <a href="#" data-href="{{$row->id}}" class="btn btn-outline-danger"  data-toggle="modal" data-target="#logoutModal"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr> 
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Delete?</h5>
+            <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Select "DELETE" below if you are delete this Data.
+            <form action="{{route('delete.dailyEx')}}" method="POST">
+                @csrf
+                <input type="hidden" id="input" name="id" value="">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
