@@ -10,6 +10,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SalesController;
@@ -154,6 +155,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('pay/salary',[SalaryController::class, 'paySalary'])->name('pay.salary');
     Route::post('pay/salarySuccess',[SalaryController::class, 'paySalarySuccess'])->name('pay.salarySuccess');
     Route::get('lastmonth/salary',[SalaryController::class, 'lastmonthSalary'])->name('lastmonth.salary');
+
+    //Report
+    Route::get('sales/report', [ReportController::class, 'salesReport'])->name('sales.report');
+    Route::post('report/show', [ReportController::class, 'reportShow'])->name('report.show');
 });
 
 Route::group(['middleware'=>'guest'],function(){

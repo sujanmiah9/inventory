@@ -127,7 +127,7 @@
                                                         <input type="hidden" name="unit" value="{{$row->selPrice}}">
                                                         <input type="hidden" name="qty" value="1">
                                                         <input type="hidden" name="description" value="{{$row->description}}">
-                                                        <button class="btn btn-success" style="padding: .rem; margin-left:5px;">Add Cart</button>
+                                                        <button class="badge badge-pill badge-success" style="padding: .rem; margin-left:5px;">Add Cart</button>
                                                     </form>
                                                 </td>
                                             </tr>

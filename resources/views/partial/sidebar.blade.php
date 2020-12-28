@@ -153,6 +153,18 @@
                 </ul>
             </li>
             <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-eye"></i>
+                    <span class="nav-label">Report Generate</span><i class="fa fa-angle-left arrow"></i></a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{route('sales.report')}}"><i class="fa fa-tint"></i> Report</a>
+                    </li>
+                    <li>
+                        {{-- <a href="{{route('all.attendence')}}"><i class="fa fa-globe"></i> All Attendence List</a> --}}
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="{{route('setting')}}"><i class="sidebar-item-icon fa fa-cog"></i>
                     <span class="nav-label">Setting</span>
                 </a>

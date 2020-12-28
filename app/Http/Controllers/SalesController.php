@@ -212,5 +212,4 @@ class SalesController extends Controller
         $order = Order::with('customer')->where('order_date', $date)->orderBy('id', 'desc')->get();
         return view('sales.dailySales',compact('order'));
     }
-
 }
