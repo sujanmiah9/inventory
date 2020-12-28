@@ -1,14 +1,11 @@
 @extends('layout.app')
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title">Dashboard</h1>
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.html"><i class="la la-home font-20"></i></a>
-        </li>
-        <li class="breadcrumb-item active">Daily Expense</li>
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <Daily class="breadcrumb-item active" aria-current="page">Daily Expense</li>
     </ol>
-</div>
+</nav>
 @php
     $date = date('d/m/y');
     $total = DB::table('expenses')->where('date', $date)->sum('amount');
@@ -19,20 +16,20 @@
 <span style="font-weight:bold; font-size:25px; color:blue">Daily Expense: {{date('d/m/y')}}</span>
 <div class="page-content fade-in-up">
     <div class="card pt-2">
-        <div class="card-header bgView">
+        <div class="card-header bgView cardB">
             <div class="row">
-                <h4 class="col-md-6">Daily Expense</h4>
+                <h4 class="col-md-6 heading_h4">Daily Expense</h4>
                 <div class="col-md-6 text-right">
                     <a href="{{route('daily.expense')}}" class="btn btn-light">Daily</a>
                     <a href="{{route('monthly.expense')}}" class="btn btn-danger">Monthly</a>
                     <a href="{{route('yearly.expense')}}" class="btn btn-warning">Yearly</a>
-                    <a href="{{route('create.expense')}}" class="btn btn-dark"><i class="fa fa-plus"></i> Add</a>
+                    <a href="{{route('create.expense')}}" class="btn btn-dark"><i class="fa fa-plus"></i>Add</a>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
-                <thead>
+            <table class="table table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                <thead style="background-color: rgb(219, 216, 216)">
                     <tr>
                         <th>Sr</th>
                         <th>Details</th>
@@ -49,8 +46,8 @@
                             <td>{{$row->amount}}</td>
                             <td>{{$row->date}}</td>
                             <td>
-                                <a href="{{route('dailyEdit.expense',$row->id)}}" class="btn btn-outline-primary"><i class="fa fa-pencil"></i></a>
-                                <a href="#" data-href="{{$row->id}}" class="btn btn-outline-danger"  data-toggle="modal" data-target="#logoutModal"><i class="fa fa-trash"></i></a>
+                                <a href="{{route('dailyEdit.expense',$row->id)}}" class="badge badge-pill badge-primary"><i class="fa fa-pencil"></i></a>
+                                <a href="#" data-href="{{$row->id}}" class="badge badge-pill badge-danger"  data-toggle="modal" data-target="#logoutModal"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr> 
                     @endforeach

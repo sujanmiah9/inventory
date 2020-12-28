@@ -4,7 +4,7 @@
     <div id="ui-view" data-select2-id="ui-view">
         <div>
             <div class="card">
-                <div class="card-header">Invoice
+                <div class="card-header" style="background-color: #fff">Invoice
                     <strong>{{$purchase->purchase_no}}</strong>
                     <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
                         <i class="fa fa-print"></i> Print</a>
@@ -14,12 +14,12 @@
                         <div class="col-sm-4">
                             <h6 class="mb-3">From:</h6>
                             <div>
-                                <strong>{{$purchase->sup_name}}}</strong>
+                                <strong>{{$purchase->supplier_name}}}</strong>
                             </div>
-                            <div>{{$purchase->shopName}}</div>
-                            <div>{{$purchase->address}}</div>
-                            <div>{{$purchase->email}}</div>
-                            <div>{{$purchase->phone}}</div>
+                            <div>{{$purchase->supplier_shopName}}</div>
+                            <div>{{$purchase->supplier_address}}</div>
+                            <div>{{$purchase->supplier_email}}</div>
+                            <div>{{$purchase->supplier_phone}}</div>
                         </div>
                         <div class="col-sm-4">
                             <h6 class="mb-3">To:</h6>
@@ -38,7 +38,7 @@
                                 <strong>{{$purchase->purchase_no}}</strong>
                             </div>
                             <div>Date: 
-                               <strong>{{$purchase->purchase_date}}</strong>
+                                <strong>{{$purchase->purchase_date}}</strong>
                             </div>
                             <div>Order Status: 
                                 <span class="badge badge-pill badge-success">Success</span>
@@ -64,8 +64,8 @@
                             @foreach ($purchaseDetails as $row)
                                 <tr>
                                     <td class="center">{{$i++}}</td>
-                                    <td class="left">{{$row->product->name}}</td>
-                                    <td class="left">{{$row->product->description}}</td>
+                                    <td class="left">{{$row->product_name}}</td>
+                                    <td class="left">{{$row->product_description}}</td>
                                     <td class="center">{{$row->quantity}}</td>
                                     <td class="right">{{$row->unit_cost}}</td>
                                     <td class="right">{{$row->total}}</td>
@@ -91,7 +91,7 @@
                                     </tr>
                                     <tr>
                                         <td class="text-right">
-                                            <strong>VAT (21%)</strong>
+                                            <strong>VAT (10%)</strong>
                                         </td>
                                         <td class="text-center">{{$purchase->tax}}</td>
                                     </tr>

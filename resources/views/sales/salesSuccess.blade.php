@@ -1,12 +1,18 @@
 @extends('layout.app')
 @section('content')
-    <div class="row pt-3">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sales List</li>
+    </ol>
+</nav>
+    <div class="row">
         <div class="col">
             <div class="card shadow">
                 <div class="card-header cardB">
                     <div class="row">
                     <div class="col-md-6">
-                        <h4>Sales Success List</h4>
+                        <h4 class="heading_h4">Sales Success List</h4>
                     </div>
                     <div class="col-md-6">
                         <a href="{{route('create.sales')}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> New Sale</a>
@@ -14,8 +20,8 @@
                 </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
-                        <thead>
+                    <table class="table table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                        <thead style="background-color: rgb(219, 216, 216)">
                             <tr>
                                 <th>Sr</th>
                                 <th>Order No</th>
@@ -32,7 +38,7 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$row->order_no}}</td>
                                 <td>{{$row->order_date}}</td>
-                                <td>{{$row->name}}</td>
+                                <td>{{$row->customer_name}}</td>
                                 <td>{{$row->total}}</td>
                                 <td>
                                     <span class="badge badge-pill badge-success">{{$row->status}}</span>

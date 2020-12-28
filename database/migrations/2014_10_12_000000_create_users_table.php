@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('status')->default('1');
+            $table->boolean('status');
             $table->text('parmanent_address');
             $table->text('present_address');
             $table->string('DOB');

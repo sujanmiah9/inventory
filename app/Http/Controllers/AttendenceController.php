@@ -120,15 +120,4 @@ class AttendenceController extends Controller
                     ->get();
         return view('attendence.viewAttendence',compact('view'));
     }
-
-    public function monthlyAttendence()
-    {
-        $month = date('F');
-        $viewMonth = DB::table('attendences')
-                    ->join('employees', 'attendences.emp_id', 'employees.id')
-                    ->select('employees.name', 'employees.photo', 'attendences.*')
-                    ->where('month',$month)
-                    ->get();
-        return view('attendence.monthlyAttendence',compact('viewMonth'));
-    }
 }

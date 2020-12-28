@@ -28,8 +28,8 @@ class DashboardController extends Controller
             'daily_sales'=>Order::where('order_date',$date)->sum('total_product'),
             'daily_expenses'=>Expense::where('date', $date)->sum('amount'),
             'profit'=>OrderDetails::where('order_date',$date)->sum('profit'),
-            'latestOrder'=>Order::with('customer')->limit(10)->orderBy('id','desc')->get(),
-            'latestPurchase'=>Purchase::with('supplier')->limit(10)->orderBy('id', 'desc')->get(),
+            'latestOrder'=>Order::limit(10)->orderBy('id','desc')->get(),
+            'latestPurchase'=>Purchase::limit(10)->orderBy('id', 'desc')->get(),
        ]);
     }
 }

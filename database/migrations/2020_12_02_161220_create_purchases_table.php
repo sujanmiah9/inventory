@@ -15,7 +15,11 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('supplier_id');
+            $table->string('supplier_name');
+            $table->string('supplier_shopName');
+            $table->string('supplier_address');
+            $table->string('supplier_email');
+            $table->string('supplier_phone');
             $table->string('purchase_no');
             $table->string('purchase_date');
             $table->string('total_product');

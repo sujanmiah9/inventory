@@ -1,7 +1,13 @@
 @extends('layout.app')
 @section('content')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Update Shop Information</li>
+    </ol>
+</nav>
     <div class="container">
-        <div class="row pt-3">
+        <div class="row">
             <div class="col-md-12">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -13,12 +19,12 @@
                     </div>
                 @endif
                 <div class="card shadow">
-                    <div class="card-header cardB bg-light">
+                    <div class="card-header cardB">
                         <div>
-                            <h4>Update Store Information</h4>
+                            <h4 class="heading_h4">Update Store Information</h4>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body form_bg">
                         <form action="{{route('store.setting',$viewSetting->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
@@ -70,7 +76,7 @@
                                 <textarea name="company_address" id="" cols="30" rows="3" class="form-control">{{$viewSetting->company_address}}</textarea>
                             </div>
                             <div class="text-right pt-2">
-                                <input type="submit" value="Update" class="btn btn-primary">
+                                <input type="submit" value="Update" class="btn btn-primary btn-sm">
                             </div>
                         </form>
                     </div>

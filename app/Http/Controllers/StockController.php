@@ -15,12 +15,12 @@ class StockController extends Controller
         return view('stock.viewStock', compact('stock'));
     } 
     public function show(){
-        $inputStock = purchaseDetails::with('product', 'purchase')->orderBy('id', 'desc')->get();
+        $inputStock = purchaseDetails::with('purchase')->orderBy('id', 'desc')->get();
         return view('stock.purchaseStock', compact('inputStock'));
     } 
     public function saleStock()
     {
-        $outStock = OrderDetails::with('product', 'order')->orderBy('id', 'desc')->get();
+        $outStock = OrderDetails::with('order')->orderBy('id', 'desc')->get();
         return view('stock.saleStock', compact('outStock'));
     }
 }

@@ -4,7 +4,7 @@
     <div id="ui-view" data-select2-id="ui-view">
         <div>
             <div class="card">
-                <div class="card-header">Invoice
+                <div class="card-header cardB heading_h4">Invoice
                 @php
                     $purchase = DB::table('purchases')->select('id')->get();
                     $count = count($purchase)+1;
@@ -13,8 +13,6 @@
                     <strong>{{$purchase_no}}</strong>
                     <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();" data-abc="true">
                         <i class="fa fa-print"></i> Print</a>
-                    <a class="btn btn-sm btn-info float-right mr-1 d-print-none" href="#" data-abc="true">
-                        <i class="fa fa-save"></i> Save</a>
                 </div>
                 <div class="card-body">
                     <div class="row mb-4">
@@ -89,7 +87,7 @@
                                     </tr>
                                     <tr>
                                         <td class="text-right">
-                                            <strong>VAT (21%)</strong>
+                                            <strong>VAT (10%)</strong>
                                         </td>
                                         <td class="text-center">{{Cart::tax()}}</td>
                                     </tr>
@@ -117,51 +115,44 @@
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-            <h5  style="font-weight:bold; color:rgb(56, 174, 204)">Invoice of Purchase</h5>
-            <h4 class="float-right" style="font-weight:bold; color:rgb(56, 174, 204)">Total: {{Cart::total()}}</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-header card-header cardB">
+            <h5  style="font-weight:bold; color:#fff">Invoice of Purchase</h5>
+            <h4 class="float-right" style="font-weight:bold; color:#fff">Total: {{Cart::total()}}</h4>
+            <button type="button" class="close heading_h4" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
         <form action="{{route('store.purchase')}}" method="POST">
             @csrf
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <input type="hidden" name="supplier_id" value="{{$supplier->id}}">
-                        <input type="hidden" name="purchase_no" value="{{$purchase_no}}">
-                        <input type="hidden" name="purchase_date" value="{{date("d/m/y")}}">
-                        <input type="hidden" name="total_product" value="{{Cart::count()}}">
-                        <input type="hidden" name="sub_total" value="{{Cart::subtotal()}}">
-                        <input type="hidden" name="tax" value="{{Cart::tax()}}">
-                        <input type="hidden" name="total" value="{{Cart::total()}}">
-                        <div class="form-group">
-                            <label for="">Payment Type</label>
-                            <select name="payment_type" id="" class="form-control" required>
-                                <option value="">Select Option</option>
-                                <option value="Hand Cash">Hand Cash</option>
-                                <option value="bkash">bkash</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Pay</label>
-                            <input type="text" class="form-control" name="pay" required>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Due</label>
-                            <input type="text" class="form-control" name="due">
-                        </div>
-                    </div>
+                <input type="hidden" name="supplier_id" value="{{$supplier->id}}">
+                <input type="hidden" name="purchase_no" value="{{$purchase_no}}">
+                <input type="hidden" name="purchase_date" value="{{date("d/m/y")}}">
+                <input type="hidden" name="total_product" value="{{Cart::count()}}">
+                <input type="hidden" name="sub_total" value="{{Cart::subtotal()}}">
+                <input type="hidden" name="tax" value="{{Cart::tax()}}">
+                <input type="hidden" name="total" value="{{Cart::total()}}">
+                <div class="form-group">
+                    <label for="">Payment Type</label>
+                    <select name="payment_type" id="" class="form-control" required>
+                        <option value="">Select Option</option>
+                        <option value="Hand Cash">Hand Cash</option>
+                        <option value="bkash">bkash</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Pay</label>
+                    <input type="text" class="form-control" name="pay" required>
+                    <input type="hidden" value="{{Cart::total()}}" >
+                </div>
+                <div class="form-group">
+                    <label for="">Due</label>
+                    <input type="text" class="form-control"  name="due" id="txtResult">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Purchase</button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Purchase</button>
             </div>
         </form>
         </div>

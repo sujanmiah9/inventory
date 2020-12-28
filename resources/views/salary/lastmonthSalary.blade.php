@@ -1,24 +1,21 @@
 @extends('layout.app')
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title">Dashboard</h1>
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.html"><i class="la la-home font-20"></i></a>
-        </li>
-        <li class="breadcrumb-item active">last month Salary</li>
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Last Month Salary List</li>
     </ol>
-</div>
+</nav>
 <div class="page-content fade-in-up">
     <div class="card">
-        <div class="card-header bgView">
+        <div class="card-header cardB">
             <div class="row">
-                <h4 class="col-md-6">Last Month Salary</h4>
+                <h4 class="col-md-6 heading_h4">Last Month Salary List</h4>
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
-                <thead>
+            <table class="table table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                <thead style="background-color: rgb(219, 216, 216)">
                     <tr>
                         <th>Sr</th>
                         <th>Name</th>

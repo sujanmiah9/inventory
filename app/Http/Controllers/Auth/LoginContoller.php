@@ -22,7 +22,7 @@ class LoginContoller extends Controller
         ]);
         
         $datacheak=$request->only('email','password');
-    
+
         if (auth()->attempt($datacheak)){
             if(auth()->user()->status==1){
                 $notification = array(
@@ -30,8 +30,9 @@ class LoginContoller extends Controller
                     'alert-type'=>'success',
                 );
                 return redirect()->route('dashboard')->with($notification);
+            }else{
+                return redirect()->route('/');
             }
-        
         }else{
             // session()->flash('error','Username Or Password Does Not Match');
             $notification = array(

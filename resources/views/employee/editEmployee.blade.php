@@ -4,10 +4,10 @@
         <div class="row pt-3">
             <div class="col-md-12 ">
                 <div class="card shadow">
-                    <div class="card-header cardB bg-light">
+                    <div class="card-header cardB">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4>Update Employee</h4>
+                                <h4 class="heading_h4">Employee Update Information</h4>
                             </div>
                             <div class="col-md-6 text-right">
                                 <a href="{{route('index.employee')}}" class="btn btn-primary btn-sm">All Employee</a>

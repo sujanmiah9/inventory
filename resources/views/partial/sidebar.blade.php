@@ -14,7 +14,7 @@
                     <span class="nav-label">Sales</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
                     <li>
-                    <a href="{{route('create.sales')}}"><i class="sidebar-item-icon fa fa-universal-access"></i> Sales</a>
+                    <a href="{{route('create.sales')}}"><i class="sidebar-item-icon fa fa-minus"></i> Sales</a>
                     <a href="{{route('sales.success')}}"><i class="sidebar-item-icon fa fa-info-circle"></i> Sales List</a>
                     </li>
                 </ul>
@@ -24,7 +24,7 @@
                     <span class="nav-label">Purches</span><i class="fa fa-angle-left arrow"></i></a>
                 <ul class="nav-2-level collapse">
                     <li>
-                        <a href="{{route('create.purchase')}}"><i class="sidebar-item-icon fa fa-shopping-basket"></i> Purches</a>
+                        <a href="{{route('create.purchase')}}"><i class="sidebar-item-icon fa fa-plus"></i> Purches</a>
                         <a href="{{route('detail.purchase')}}"><i class="sidebar-item-icon fa fa-info-circle"></i>Purches Details</a>
                     </li>
                 </ul>
@@ -35,8 +35,8 @@
                 </a>
                 <ul class="nav-2-level collapse {{ request()->route()->getName() == 'show.ward' ? 'in' : ''}} {{ request()->route()->getName() == 'view.stock' ? 'in' : ''}}" aria-expanded="true">
                     <li>
-                    <a href="{{route('show.ward')}}"><i class="sidebar-item-icon fa fa-info-circle"></i>Purchase Stock</a>
-                    <a href="{{route('sale.stock')}}"><i class="sidebar-item-icon fa fa-info-circle"></i>Sale Stock</a>
+                    <a href="{{route('show.ward')}}"><i class="sidebar-item-icon fa fa-plus"></i>Purchase Product</a>
+                    <a href="{{route('sale.stock')}}"><i class="sidebar-item-icon fa fa-minus"></i>Sale Product</a>
                     <a href="{{route('view.stock')}}"><i class="sidebar-item-icon fa fa-info-circle"></i>Net Stock</a>
                     </li>
                 </ul>
@@ -49,7 +49,7 @@
                         <a href="{{route('create.product')}}"><i class="fa fa-plus-circle"></i> Add Products</a>
                     </li>
                     <li>
-                        <a href="{{route('index.product')}}"><i class="fa fa-globe"></i> All Products</a>
+                        <a href="{{route('index.product')}}"><i class="fa fa-globe"></i> Products List</a>
                     </li>
                     <li>
                         <a href="{{route('product.import')}}"><i class="fa fa-globe"></i> Products Import</a>
@@ -64,7 +64,7 @@
                         <a href="{{route('create.category')}}"><i class="fa fa-plus-circle"></i> Add Catagory</a>
                     </li>
                     <li>
-                        <a href="{{route('index.category')}}"><i class="fa fa-globe"></i> All Catagory</a>
+                        <a href="{{route('index.category')}}"><i class="fa fa-globe"></i> Catagory List</a>
                     </li>
                 </ul>
             </li>
@@ -76,7 +76,7 @@
                         <a href="{{route('create.supplier')}}"><i class="fa fa-plus-circle"></i> Add Supplier</a>
                     </li>
                     <li>
-                        <a href="{{route('index.supplier')}}"><i class="fa fa-globe"></i> All Supplier</a>
+                        <a href="{{route('index.supplier')}}"><i class="fa fa-globe"></i> Supplier List</a>
                     </li>
                 </ul>
             </li>
@@ -88,7 +88,7 @@
                         <a href="{{route('create.customer')}}"><i class="fa fa-plus-circle"></i> Add Customer</a>
                     </li>
                     <li>
-                        <a href="{{route('index.customer')}}"><i class="fa fa-globe"></i> All Customer</a>
+                        <a href="{{route('index.customer')}}"><i class="fa fa-globe"></i> Customer List</a>
                     </li>
                 </ul>
             </li>
@@ -100,7 +100,7 @@
                         <a href="{{route('create.employee')}}"><i class="fa fa-plus-circle"></i> Add Employee</a>
                     </li>
                     <li>
-                        <a href="{{route('index.employee')}}"><i class="fa fa-globe"></i> All Employee</a>
+                        <a href="{{route('index.employee')}}"><i class="fa fa-globe"></i> Employee List</a>
                     </li>
                 </ul>
             </li>
@@ -149,9 +149,6 @@
                     </li>
                     <li>
                         <a href="{{route('all.attendence')}}"><i class="fa fa-globe"></i> All Attendence List</a>
-                    </li>
-                    <li>
-                        <a href="{{route('Monthly.attendence')}}"><i class="fa fa-tint"></i> Monthly Attendence</a>
                     </li>
                 </ul>
             </li>

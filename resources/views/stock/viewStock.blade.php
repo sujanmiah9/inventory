@@ -1,22 +1,25 @@
 @extends('layout.app')
-
-
 @section('content')
-
-<div class="p-3">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Net Stock</li>
+    </ol>
+</nav>
+<div class="">
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow"> 
-                <div class="card-header text-white" style="background-color: #00aa55;">
+                <div class="card-header cardB" style="background-color: #00aa55;">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center mt-2" style="font-weight:bold;font-size:25px;">Net Stock </h5>
+                            <h5 class="text-center mt-2 heading_h4">Net Stock </h5>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
-                        <thead class="thead-dark">
+                    <table class="table table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                        <thead style="background-color: rgb(219, 216, 216)">
                             <tr>
                                 <th>Sr.No</th>
                                 <th>Product Code</th>

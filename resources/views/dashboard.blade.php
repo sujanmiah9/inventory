@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<div class="page-content fade-in-up">
+<div class="page-content fade-in-up" style="padding-top: 20px;">
     <div class="row">
         <div class="col-lg-3 col-md-6">
             <div class="ibox bg-success color-white widget-stat">
@@ -9,7 +9,7 @@
                     <div class="m-b-5" style="font-size:20px;">Daily Purchases</div><i class="fa fa-shopping-basket widget-stat-icon"></i>
                 </div>
                 <div class="ibox-footer pl-4 pr-4" style="background-color: #009432;">
-                    <a href="" class="text-white">
+                    <a href="{{route('dailyPurchases')}}" class="text-white">
                         <div class="row">
                             <div class="col-6">View</div>
                             <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
@@ -25,7 +25,7 @@
                     <div class="m-b-5" style="font-size:20px;">Daily Sales</div><i class="fa fa-universal-access widget-stat-icon"></i>
                 </div>
                 <div class="ibox-footer pl-4 pr-4" style="background-color: #2fb4f1;">
-                    <a href="" class="text-white">
+                    <a href="{{route('dailySales')}}" class="text-white">
                         <div class="row">
                             <div class="col-6">View</div>
                             <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
@@ -41,7 +41,7 @@
                     <div class="m-b-5" style="font-size:20px;">Daily Expensive</div><i class="fa fa-money widget-stat-icon"></i>
                 </div>
                 <div class="ibox-footer pl-4 pr-4" style="background-color: #f3ad16;">
-                    <a href="" class="text-white">
+                    <a href="{{route('dailyExpensiveList')}}" class="text-white">
                         <div class="row">
                             <div class="col-6">View</div>
                             <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
@@ -73,7 +73,7 @@
                     <div class="m-b-5" style="font-size:20px;">Total Product</div><i class="fa fa-product-hunt widget-stat-icon"></i>
                 </div>
                 <div class="ibox-footer pl-4 pr-4" style="background-color: #b30f0f;">
-                    <a href="" class="text-white">
+                    <a href="{{route('index.product')}}" class="text-white">
                         <div class="row">
                             <div class="col-6">View</div>
                             <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
@@ -89,7 +89,7 @@
                     <div class="m-b-5" style="font-size:20px;">Total Category</div><i class="fa fa-crosshairs widget-stat-icon"></i>
                 </div>
                 <div class="ibox-footer pl-4 pr-4" style="background-color: #000000;">
-                    <a href="" class="text-white">
+                    <a href="{{route('index.category')}}" class="text-white">
                         <div class="row">
                             <div class="col-6">View</div>
                             <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
@@ -105,7 +105,7 @@
                     <div class="m-b-5" style="font-size:20px;">Total Employee</div><i class="fa fa-user-circle widget-stat-icon"></i>
                 </div>
                 <div class="ibox-footer pl-4 pr-4" style="background-color: #05802e;">
-                    <a href="" class="text-white">
+                    <a href="{{route('index.employee')}}" class="text-white">
                         <div class="row">
                             <div class="col-6">View</div>
                             <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
@@ -121,7 +121,7 @@
                     <div class="m-b-5" style="font-size:20px;">Present Employee</div><i class="fa fa-user widget-stat-icon"></i>
                 </div>
                 <div class="ibox-footer pl-4 pr-4" style="background-color: #b30f0f;">
-                    <a href="" class="text-white">
+                    <a href="{{route('all.attendence')}}" class="text-white">
                         <div class="row">
                             <div class="col-6">View</div>
                             <div class="col-6 text-right" > <i class="fa fa-arrow-circle-right"></i></div>
@@ -135,8 +135,8 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header cardB">
-                    <div style="font-weight: bold">Latest Sales</div>
+                <div class="card-header cardB bg-info">
+                    <div style="font-weight: bold" class="heading_h4"><i class="fa fa-minus"></i>Latest Sales</div>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped table-hover">
@@ -153,7 +153,7 @@
                             @foreach ($latestOrder as $row)
                             <tr>
                                 <td>{{$row->order_no}}</td>
-                                <td>{{$row->customer->name}}</td>
+                                <td>{{$row->customer_name}}</td>
                                 <td>{{$row->total}}</td>
                                 <td>
                                     <span class="badge badge-pill badge-success">{{$row->status}}</span>
@@ -168,8 +168,8 @@
         </div>
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header cardB">
-                    <div style="font-weight: bold">Latest Purchase</div>
+                <div class="card-header bg-success cardB">
+                    <div style="font-weight: bold" class="heading_h4"><i class="fa fa-plus"></i>Latest Purchase</div>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped table-hover">
@@ -186,7 +186,7 @@
                             @foreach ($latestPurchase as $row)
                             <tr>
                                 <td>{{$row->purchase_no}}</td>
-                                <td>{{$row->supplier->sup_name}}</td>
+                                <td>{{$row->supplier_name}}</td>
                                 <td>{{$row->total}}</td>
                                 <td>
                                     <span class="badge badge-pill badge-success">{{$row->status}}</span>

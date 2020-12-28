@@ -89,6 +89,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('delete/dailyEx',[ExpenseController::class, 'destroyDaily'])->name('delete.dailyEx');
     Route::get('monthly/expense',  [ExpenseController::class, 'monthly'])->name('monthly.expense');
     Route::get('yearly/expense',  [ExpenseController::class, 'yearly'])->name('yearly.expense');
+    Route::get('dailyExpensiveList',  [ExpenseController::class, 'dailyExpensiveList'])->name('dailyExpensiveList');
 
     //Attendence
     Route::get('taken/attendence',[AttendenceController::class, 'takenAttendence'])->name('taken.attendence');
@@ -98,7 +99,6 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('update/attendence',[AttendenceController::class, 'updateAttendence'])->name('update.attendence');
     Route::post('delete/attendence',[AttendenceController::class, 'deleteAttendence'])->name('delete.attendence');
     Route::get('view/attendence{date}',[AttendenceController::class, 'viewAttendence'])->name('view.attendence');
-    Route::get('monthly/attendence',[AttendenceController::class, 'monthlyAttendence'])->name('Monthly.attendence');
 
     //Logout
     Route::get('admin/logout',[LoginContoller::class,'logout'])->name('logout');
@@ -120,6 +120,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('invoice/purchase',[PurchaseController::class,'invoicePurchase'])->name('invoice.purchase');
     Route::post('store/purchase',[PurchaseController::class,'storePurchase'])->name('store.purchase');
     Route::get('purchase.history{id}',[PurchaseController::class,'purchaseHistory'])->name('purchase.history');
+    Route::get('dailyPurchases',[PurchaseController::class,'dailyPurchases'])->name('dailyPurchases');
 
     //Sales
     Route::get('create/sales', [SalesController::class, 'create'])->name('create.sales');
@@ -132,6 +133,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('sales.history{id}',[SalesController::class,'SalesHistory'])->name('sales.history');
     Route::get('sales.done{id}',[SalesController::class,'SalesDone'])->name('sales.done');
     Route::get('salesSuccess/histor{id}',[SalesController::class,'salesSuccessHistor'])->name('salesSuccess.history');
+    Route::get('dailySales',[SalesController::class,'dailySales'])->name('dailySales');
 
     //Stock
     Route::get('view/stock',[StockController::class,'view'])->name('view.stock');

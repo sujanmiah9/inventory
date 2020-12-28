@@ -19,7 +19,6 @@ class PurchaseController extends Controller
 {
     public function create()
     {
-
         return view('purchase.createPurchase',[
             'product'=>Product::with('category')->get(),
             'supplier'=>Supplier::select('sup_name', 'id')->get(),
@@ -109,8 +108,13 @@ class PurchaseController extends Controller
 
     public function storePurchase(Request $request)
     {
+        $supplier = Supplier::find($request->supplier_id);
         $data = [
-            'supplier_id'=>$request->supplier_id,
+            'supplier_name'=>$supplier->sup_name,
+            'supplier_shopName'=>$supplier->shopName,
+            'supplier_address'=>$supplier->address,
+            'supplier_email'=>$supplier->email,
+            'supplier_phone'=>$supplier->phone,
             'purchase_no'=>$request->purchase_no,
             'purchase_date'=>$request->purchase_date,
             'total_product'=>$request->total_product,
@@ -126,17 +130,17 @@ class PurchaseController extends Controller
         $pdata = array();
         foreach($contents as $content)
         {
+            $product = Product::find($content->id);
+            
             $pdata['purchase_id']=$purchase_id;
-            $pdata['product_id']=$content->id;
+            $pdata['product_name']=$product->name;
+            $pdata['product_description']=$product->description;
             $pdata['quantity']=$content->qty;
             $pdata['unit_cost']=$content->price;
             $pdata['total']=$content->total;
             $pdata['purchase_date']=$request->purchase_date;
             $pdata['description']=$content->options->description;
-
-          
             $purchasedetail_id = purchaseDetails::insertGetId($pdata);
-            
         }
         
         foreach($contents as $content){
@@ -152,7 +156,6 @@ class PurchaseController extends Controller
             }else{
                 $success = Stock::insert($qdata);
             }
-            
         }
         Cart::destroy();
         $notification = array(
@@ -160,21 +163,25 @@ class PurchaseController extends Controller
             'alert-type'=>'success',
         );
         return redirect()->route('create.purchase')->with($notification);
-        
     }
 
     public function purchaseHistory($id)
     {
-        $purchase = DB::table('purchases')
-                ->join('suppliers','purchases.supplier_id', 'suppliers.id')
-                ->where('purchases.id', $id)
-                ->first();
+        $purchase = Purchase::where('id', $id)->first();
         
-        $purchaseDetails =purchaseDetails::where('purchase_id',$id)->with('product')->get();
+        $purchaseDetails =purchaseDetails::where('purchase_id',$id)->get();
 
         $shopdetails = Setting::first();
         
         return view('purchase.purchaseHistory', compact('purchase','purchaseDetails','shopdetails'));
         
+    }
+
+
+    public function dailyPurchases()
+    {
+        $date = date("d/m/y");
+        $purchase = Purchase::with('supplier')->where('purchase_date', $date)->orderBy('id', 'desc')->get();
+        return view('purchase.dailyPurchases',compact('purchase'));
     }
 }

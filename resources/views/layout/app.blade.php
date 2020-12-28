@@ -16,43 +16,25 @@
     <!-- THEME STYLES-->
     <link href="{{asset('asset')}}/assets/css/main.min.css" rel="stylesheet" />
     <style>
-        .bgView{
-            background-color: #5f27cd;color: #fff;
-        }
-        .cardP{
-            border-top: 5px solid #1abc9c;
-        }
-        .cardB{
-            border-bottom: 4px solid #1abc9c;
-        }
-        .cardL{
-            border-top: 5px solid #2ecc71;
-        }
-        .cardR{
-            border-top: 5px solid #3498db;
-        }
-        label{
-            font-weight:bold;
-        }
-        .form-group input::-webkit-input-placeholder {
-            color:#ced6e0;font-size:15px;
-        }
-        .form-group select{
-            font-size:15px;color:#ced6e0;
-        }
-        .shadow{
-            box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
-        }
-        .hr2{
-            border-bottom: 2px solid #fff;
-        }
-        .widget-stat-icon{
-            line-height: 140px; bottom: 45px;width: 70px; height: 76%;
-        }
-        .span_star_message{
-            color: red; font-weight:bold;
-        }
+        .bgView{background-color: #5f27cd !important; color: #fff}
+        .card-header{background-color: #40407a}
+        .cardP{ border-top: 5px solid #1abc9c;}
+        .cardB{border-bottom: 4px solid #1b1a1b;}
+        .cardL{border-top: 5px solid #2ecc71;}
+        .cardR{border-top: 5px solid #3498db;}
+        label{font-weight:bold;}
+        .form-group input::-webkit-input-placeholder {:#ced6e0;font-size:15px;}
+        .form-group select{font-size:15px;color:#ced6e0; }
+        .shadow{ box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;}
+        .hr2{ border-bottom: 2px solid #fff; }
+        .widget-stat-icon{ line-height: 140px; bottom: 45px;width: 70px; height: 76%; }
+        .span_star_message{ color: red; font-weight:bold; }
         .pic{height: 50px; width:50px; border-radius: 6px;}
+        .fa{padding: 5px;}
+        .form_bg{background-color: #ecf0f1;}
+        .heading_h4{color: white; font-weight:bold;}
+        .btn{border-radius: 10px;}
+        .page-content{padding-top: 0;}
     </style>
 </head>
 
@@ -173,6 +155,16 @@
             });
         }, false);
         })();
+    </script>
+    <script type="text/javascript">
+        function sum() {
+            var txtFirstNo = document.getElementById('txtFirstNo').value;
+            var txtSecondNo = document.getElementById('txtSecondNo').value;
+            var result = parseInt(txtFirstNo) - parseInt(txtSecondNo);
+            if (!isNaN(result)) {
+                document.getElementById('txtResult').value = result;
+            }
+        }
     </script>
 </body>
 </html>

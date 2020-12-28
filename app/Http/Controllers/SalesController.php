@@ -20,16 +20,18 @@ class SalesController extends Controller
 //create Sales.......................
     public function create()
     {   
-
         return view('sales.createSales',[
-            'product'=>Product::with('category')->get(),
+            'product'=>Product::with('category')->limit(6)->get(),
             'customer'=>Customer::select('name', 'id')->get(),
         ]);
     }
 //cart Add ....................
-    public function addCart(Request $request){
-
-        $check = Stock::where('quantity', '>=', $request->qty)->where('product_id',$request->id)->first();
+    public function addCart(Request $request)
+{
+        $check = DB::table('stocks')
+                ->where('product_id', $request->id)
+                ->where('quantity','>=',$request->qty)
+                ->first();
         if($check){
             $data = [
                 'id'=>$request->id,
@@ -127,8 +129,13 @@ class SalesController extends Controller
 //order store.................................
     public function storeSales(Request $request)
     {
+        $customer = Customer::find($request->customer_id);
         $data = [
-            'customer_id'=>$request->customer_id,
+            'customer_name'=>$customer->name,
+            'customer_shopName'=>$customer->shopName,
+            'customer_address'=>$customer->address,
+            'customer_email'=>$customer->email,
+            'customer_phone'=>$customer->phone,
             'order_no'=>$request->order_no,
             'order_date'=>$request->order_date,
             'total_product'=>$request->total_product,
@@ -144,8 +151,11 @@ class SalesController extends Controller
         $pdata = array();
         foreach($contents as $content)
         {
+            $product = Product::find($content->id);
+
             $pdata['order_id']=$order_id;
-            $pdata['product_id']=$content->id;
+            $pdata['product_name']=$product->name;
+            $pdata['product_description']=$product->description;
             $pdata['quantity']=$content->qty;
             $pdata['unit_cost']=$content->price;
             $pdata['total']=$content->total;
@@ -181,27 +191,26 @@ class SalesController extends Controller
 }
 //sales Success list................................
     public function success(){
-        $order = DB::table('orders')
-                ->join('customers', 'orders.customer_id','customers.id')
-                ->where('status', 'Success')
-                ->select('orders.*', 'customers.name')
-                ->orderBy('id','desc')
-                ->get();
-        // $order = Order::with('customer')->where('status', 'success')->get();
+        $order = Order::orderBy('id','desc')->get();
         return view('sales.salesSuccess',compact('order'));
     }
+
 //sales Success history....................................
     public function salesSuccessHistor($id)
     {
-        $order = DB::table('orders')
-                ->join('customers','orders.customer_id', 'customers.id')
-                ->where('orders.id', $id)
-                ->first();
+        $order = Order::where('id', $id)->first();
         
-        $orderDetails =OrderDetails::where('order_id',$id)->with('product')->get();
+        $orderDetails =OrderDetails::where('order_id',$id)->get();
         $shopdetails = Setting::first();
         
         return view('sales.salesSuccessHistor', compact('order','orderDetails','shopdetails'));
+    }
+
+    public function dailySales()
+    {
+        $date = date("d/m/y");
+        $order = Order::with('customer')->where('order_date', $date)->orderBy('id', 'desc')->get();
+        return view('sales.dailySales',compact('order'));
     }
 
 }

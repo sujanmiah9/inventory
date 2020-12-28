@@ -4,17 +4,17 @@
         <div class="row pt-3">
             <div class="col-md-8 offset-2">
                 <div class="card shadow">
-                    <div class="card-header cardB bg-light">
+                    <div class="card-header cardB">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4>Update Advance Salary</h4>
+                                <h4 class="heading_h4">Update Advance Salary</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <a href="{{route('all.advanceSalary')}}" class="btn btn-primary btn-sm">All</a>
+                                <a href="{{route('all.advanceSalary')}}" class="btn btn-primary btn-sm">Back</a>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body form_bg">
                         <form action="{{route('update.advanceSalary',$advance->id)}}" method="POST">
                             @csrf
                             <div class="form-group">

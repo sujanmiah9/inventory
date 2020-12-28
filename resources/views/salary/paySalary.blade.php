@@ -1,32 +1,29 @@
 @extends('layout.app')
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title">Dashboard</h1>
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.html"><i class="la la-home font-20"></i></a>
-        </li>
-        <li class="breadcrumb-item active">Pay Salary</li>
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Pay Salary List</li>
     </ol>
-</div>
+</nav>
 <div class="page-content fade-in-up">
     <div class="card">
-        <div class="card-header bgView">
+        <div class="card-header bgView cardB">
             <div class="row">
                 <div class="col-md-6">
-                    <span style="font-size: 22px;">Pay Salary</span>
+                    <span style="font-size: 22px;" class="heading_h4">Monthly Pay Salary</span>
                 </div>
                 @php
                     $date = date("F",strtotime('-1 month'));
                 @endphp
                 <div class="col-md-6 text-right">
-                    <span style="font-size: 22px;">{{$date}}</span>
+                    <span style="font-size: 22px;" class="heading_h4">{{$date}}</span>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
-                <thead>
+            <table class="table table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                <thead style="background-color: rgb(219, 216, 216); ">
                     <tr>
                         <th>Sr</th>
                         <th>Name</th>
@@ -74,8 +71,8 @@
 <div class="modal fade" id="paymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content">
-        <div class="modal-header bg-light cardB">
-            <h5 class="modal-title" id="exampleModalLabel">
+        <div class="modal-header card-header cardB">
+            <h5 class="modal-title heading_h4" id="exampleModalLabel">
             <i class="fa fa-money"></i>
                 Pay Salary
             </h5>
@@ -94,8 +91,25 @@
                         <option value="bkash">bkash</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="">Month</label>
+                    <select name="month" id="" class="form-control">
+                        <option value="">Select Month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="Jun">Jun</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
                 <input type="hidden" id="input" name="id">
-                <input type="hidden" name="month" value="{{date("F", strtotime('-1 month'))}}">
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

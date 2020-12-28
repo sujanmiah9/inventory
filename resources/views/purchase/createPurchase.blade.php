@@ -1,15 +1,21 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="pt-3">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Product Purchase</li>
+    </ol>
+</nav>
+    <div class="">
         <div class="row">
             <div class="col-md-12">
                 <div class="card shadow">
-                    <div class="card-header bg-light cardB">
+                    <div class="card-header cardB">
                         <div class="row">
-                            <h4 class="col-md-6">Add Purchase</h4>
+                            <h4 class="col-md-6 heading_h4">Product Purchase</h4>
                             <div class="col-md-6">
-                                <a href="{{route('detail.purchase')}}" class="btn btn-primary btn-sm float-right"> Purchase</a>
+                                <a href="{{route('detail.purchase')}}" class="btn btn-primary btn-sm float-right">Purchase List</a>
                             </div>
                         </div>
                     </div>
@@ -18,8 +24,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-header bg-success text-center">
-                                    <span style="font-weight:bold; font-size:20px;color:rgb(27, 10, 58)">Cart Added Product</span>
+                                <div class="card-header bg-success text-center cardB">
+                                    <span style="font-weight:bold; font-size:20px;color:#fff">Cart Added Product</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="">
@@ -90,14 +96,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-header bg-info text-center">
-                                    <span style="font-weight:bold; font-size:20px;color:rgb(27, 10, 58)">Select Product</span> 
+                                <div class="card-header bg-info text-center cardB">
+                                    <span style="font-weight:bold; font-size:20px;color:#fff">Select Product</span> 
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>Pr Code</th>
+                                                <th>Code</th>
                                                 <th>Name</th>
                                                 <th>Category</th>
                                                 <th>Photo</th>
@@ -121,7 +127,7 @@
                                                         <input type="hidden" name="unit" value="{{$row->buyPrice}}">
                                                         <input type="hidden" name="qty" value="1">
                                                         <input type="hidden" name="description" value="{{$row->description}}">
-                                                        <button class="btn btn-success" style="padding: .rem; margin-left:5px;"> <i class="fa fa-plus"></i> </button>
+                                                        <button class="btn btn-success" style="padding: .rem; margin-left:5px;">Add Cart </button>
                                                     </form>
                                                 </td>
                                             </tr>

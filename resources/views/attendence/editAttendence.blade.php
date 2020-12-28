@@ -1,14 +1,11 @@
 @extends('layout.app')
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title">Dashboard</h1>
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.html"><i class="la la-home font-20"></i></a>
-        </li>
-        <li class="breadcrumb-item active">Update Attendence</li>
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Update Attendence</li>
     </ol>
-</div>
+</nav>
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -20,19 +17,19 @@
 @endif
 <div class="page-content fade-in-up">
     <div class="card shadow">
-        <div class="card-header cardB bg-light">
+        <div class="card-header cardB">
             <div class="row">
-                <h4 class="col-md-6">Update Attendence</h4>
+                <h4 class="col-md-6 heading_h4">Update Attendence</h4>
                 <div class="col-md-6">
-                    <a href="{{route('all.attendence')}}" class="btn btn-primary btn-sm float-right"> All Attendence</a>
+                    <a href="{{route('all.attendence')}}" class="btn btn-primary btn-sm float-right">All Attendence</a>
                 </div>
             </div>
         </div>
         <div class="card-body">
             <form action="{{route('update.attendence')}}" method="POST">
                 @csrf
-            <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-                <thead>
+            <table class="table table-bordered table-hover" cellspacing="0" width="100%">
+                <thead style="background-color: rgb(219, 216, 216)">
                     <tr>
                         <th>Sr</th>
                         <th>Name</th>
@@ -62,7 +59,7 @@
                 </tbody>
             </table>
             <div class="text-right">
-                <input type="submit" value="Update" class="btn btn-primary">
+                <input type="submit" value="Update" class="btn btn-primary btn-sm">
             </div>
         </form>
         </div>

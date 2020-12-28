@@ -1,6 +1,6 @@
 <header class="header">
     <div class="page-brand">
-        <a class="link" href="index.html">
+        <a class="link" href="{{route('dashboard')}}">
             <span class="brand">Inventory(POS)
             </span>
         </a>
@@ -10,14 +10,6 @@
         <ul class="nav navbar-toolbar">
             <li>
                 <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
-            </li>
-            <li>
-                <form class="navbar-search" action="javascript:;">
-                    <div class="rel">
-                        <span class="search-icon"><i class="ti-search"></i></span>
-                        <input class="form-control" placeholder="Search here...">
-                    </div>
-                </form>
             </li>
         </ul>
         <!-- END TOP-LEFT TOOLBAR-->

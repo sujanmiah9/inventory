@@ -1,14 +1,11 @@
 @extends('layout.app')
 @section('content')
-<div class="page-heading">
-    <h1 class="page-title">Dashboard</h1>
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="index.html"><i class="la la-home font-20"></i></a>
-        </li>
-        <li class="breadcrumb-item active">Yearly Expense</li>
+        <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Yearly Expense</li>
     </ol>
-</div>
+</nav>
 @php
 $year = date('Y');
 $total = DB::table('expenses')->where('year',$year)->sum('amount');
@@ -19,9 +16,9 @@ $total = DB::table('expenses')->where('year',$year)->sum('amount');
     <span style="font-weight:bold; font-size:25px; color:blue">Yearly Expense: {{date('Y')}}</span>
 <div class="page-content fade-in-up">
     <div class="card pt-2">
-        <div class="card-header bgView">
+        <div class="card-header bgView cardB">
             <div class="row">
-                <h4 class="col-md-6">Yearly Expense</h4>
+                <h4 class="col-md-6 heading_h4">Yearly Expense</h4>
                 <div class="col-md-6 text-right">
                     <a href="{{route('daily.expense')}}" class="btn btn-light">Daily</a>
                     <a href="{{route('monthly.expense')}}" class="btn btn-danger">Monthly</a>
@@ -31,8 +28,8 @@ $total = DB::table('expenses')->where('year',$year)->sum('amount');
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
-                <thead>
+            <table class="table table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                <thead style="background-color: rgb(219, 216, 216)">
                     <tr>
                         <th>Sr</th>
                         <th>Details</th>

@@ -117,4 +117,11 @@ class ExpenseController extends Controller
         $yearEx = Expense::where('year',$year)->get();
         return view('expense.yearlyExpense', compact('yearEx'));
     }
+
+    public function dailyExpensiveList()
+    {
+        $date = date('d/m/y');
+        $dailyEx = Expense::where('date',$date)->get();
+        return view('expense.dailyExpensiveList', compact('dailyEx'));
+    }
 }

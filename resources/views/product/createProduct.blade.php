@@ -4,17 +4,17 @@
         <div class="row pt-3">
             <div class="col-md-12">
                 <div class="card shadow">
-                    <div class="card-header cardB bg-light">
+                    <div class="card-header cardB ">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4>Add Product</h4>
+                                <h4 class="heading_h4">Add Product</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <a href="{{route('index.product')}}" class="btn btn-primary btn-sm">All Product</a>
+                                <a href="{{route('index.product')}}" class="btn btn-primary btn-sm">Show</a>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body form_bg">
                         <form action="{{route('store.product')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

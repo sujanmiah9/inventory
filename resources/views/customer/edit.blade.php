@@ -12,18 +12,18 @@
                         </ul>
                     </div>
                 @endif
-                <div class="card">
-                    <div class="card-header bg-light cardB">
+                <div class="card shadow">
+                    <div class="card-header cardB">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4>Update Customer</h4>
+                                <h4 class="heading_h4">Update Customer</h4>
                             </div>
                             <div class="col-md-6 text-right">
                                 <a href="{{route('index.customer')}}" class="btn btn-primary btn-sm">All Customer</a>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body form_bg">
                         <form action="{{route('update.customer',$editCustomer->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
@@ -66,7 +66,7 @@
                                 <textarea name="address" id="" cols="30" rows="3" class="form-control">{{$editCustomer->address}}</textarea>
                             </div>
                             <div class="text-right pt-2">
-                                <input type="submit" value="Add" class="btn btn-primary">
+                                <input type="submit" value="Update" class="btn btn-primary">
                             </div>
                         </form>
                     </div>
