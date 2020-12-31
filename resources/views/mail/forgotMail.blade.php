@@ -1,0 +1,1 @@
+<a href="{{route('reset.links',$reset->token)}}">Links</a>

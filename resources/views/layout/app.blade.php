@@ -50,7 +50,7 @@
             <!-- START PAGE CONTENT-->
             @yield('content')
             <!-- END PAGE CONTENT-->
-            @include('partial.footer')
+        @include('partial.footer')
         </div>
     </div>
     <!-- Logout Modal-->

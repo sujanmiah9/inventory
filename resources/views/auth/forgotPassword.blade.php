@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,63 +13,31 @@
     <link href="{{asset('asset')}}/assets/css/main.css" rel="stylesheet" />
         <!-- PAGE LEVEL STYLES-->
     <link href="{{asset('asset')}}/assets/css/pages/auth-light.css" rel="stylesheet" />
-    
-    <style>
-        .back{
-            background-image: url({{asset('upload/back1.jpg')}});
-        }
-        .h2S{
-            font-weight: bold;
-            padding-bottom:20px;
-            font-size: 40px;
-            color: #fff;
-        }
-        .shadow{
-        box-shadow: 0 .15rem 1.75rem 0 rgba(17, 1, 10, 0.9)!important;
-    }
-    .form-control{
-        padding: 1rem 1rem;
-    }
-    .lineB{
-            border-bottom: 2px solid #00a8ff;
-            padding-bottom: 10px;
-            font-weight: 600;
-        }
-    </style>
 </head>
 
 <body class="back">
-    <div class="pt-5 mt-5">
-        <h2 class="text-center h2S" >Welcome To  POS & Inventory Management System </h2>
-    </div>
-    <div class="content shadow">
-    <form id="login-form" action="{{route('login')}}" method="post">
-        @csrf
-            <h2 class="login-title lineB">Log in</h2>
-            <div class="mb-3 text-center">
-                @if (session()->has('error'))
-                <span class="text-red-800 bg-red-100 rounded py-2 px-4">{{session('error')}}</span>
-                    @endif
-            </div>
-            <div class="form-group">
-                <div class="input-group-icon right">
-                    <div class="input-icon"><i class="fa fa-envelope"></i></div>
-                    <input class="form-control" type="email" name="email" placeholder="Email" autocomplete="off">
+    <div class="container shadow mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header bg-orange">
+                        <h4 style="font-size: 25px; font-weight:bold; color:#fff;">Forgot Password</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{route('send.mail')}}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="">Enter Email</label>
+                                <input type="email" name="email" class="form-control" placeholder="Enter Your Email Address to send Mail">
+                            </div>
+                            <div class="text-right">
+                                <input type="submit" class="btn btn-primary" value="Send">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="input-group-icon right">
-                    <div class="input-icon"><i class="fa fa-lock font-16"></i></div>
-                    <input class="form-control" type="password" name="password" placeholder="Password">
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-info btn-block" type="submit">Login</button>
-            </div>
-            <div class="text-center">
-                <a href="{{route('forgot.password')}}">Forgot password?</a>
-            </div>
-        </form>
+        </div>
     </div>
     <!-- BEGIN PAGA BACKDROPS-->
     {{-- <div class="sidenav-backdrop backdrop"></div>

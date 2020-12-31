@@ -78,7 +78,7 @@
                                             @csrf
                                             <div class="form-group">
                                                 <label for="" style="font-size: 20px;">Select Supplier</label>
-                                                <a class="float-right btn btn-success btn-sm" data-toggle="modal" data-target="#modal-primary" href=""><i class="fa fa-plus" ></i> Add</a>
+                                                <a class="float-right btn btn-success btn-sm" data-toggle="modal" data-target="#modal-primary" href=""><i class="fa fa-plus" ></i>Add</a>
                                                 <select name="sup_id" id="" class="form-control">
                                                     <option value="">Select Supplier</option>
                                                     @foreach ($supplier as $row)
@@ -145,13 +145,13 @@
     <div class="modal fade" id="modal-primary">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-            <div class="modal-header bg-light cardB">
+            <div class="modal-header card-header heading_h4 cardB">
                 <h4 class="modal-title ">Add Supplier</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close heading_h4" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body form_bg">
             <form action="{{route('store.supplier')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">

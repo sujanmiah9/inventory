@@ -165,6 +165,10 @@ Route::group(['middleware'=>'guest'],function(){
     //Login
     Route::get('/',[LoginContoller::class,'showlogin'])->name('/');
     Route::post('admin/login',[LoginContoller::class,'loginprocess'])->name('login');
+    Route::get('forgot/password',[LoginContoller::class,'forgotPassword'])->name('forgot.password');
+    Route::post('send/mail',[LoginContoller::class,'sendMail'])->name('send.mail');
+    Route::get('reset-links/{token}',[LoginContoller::class,'showPasswordForm'])->name('reset.links');
+    Route::post('forgot/changePassword',[LoginContoller::class,'forgotChangePassword'])->name('forgot.changePassword');
 });
     
 

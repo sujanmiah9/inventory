@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\ForgotPassword;
+use App\Models\PasswordReset;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class LoginContoller extends Controller
 {
@@ -158,6 +162,74 @@ class LoginContoller extends Controller
                 'alert-type'=>'success',
             );
             return Redirect()->route('create.profile')->with($notification);
+        }
+    }
+
+    public function forgotPassword()
+    {
+        return view('auth.forgotPassword');
+    }
+
+    public function sendMail(Request $request)
+    {
+        // $email = $request->email;
+        $user = User::where('email',$request->email)->first();
+        if($user == null){
+            $notification = array(
+                'message'=>'Email Does not exist. Please Try Again!',
+                'alert-type'=>'error',
+            );
+            return redirect()->back()->with($notification);
+        }
+
+        $data = [
+            'email'=>$request->email,
+            'token'=>Str::random(40),
+        ];
+        $reset = PasswordReset::create($data);
+        Mail::to($request->email)->send(new ForgotPassword($reset));
+    }
+
+    public function showPasswordForm($token)
+    {
+        $tokens = PasswordReset::where('token','=',$token)->exists();
+
+        if(!$tokens){
+            // $notification = array(
+            //     'message'=>'Password reset token invalid. Please Try Again!',
+            //     'alert-type'=>'error',
+            // );
+            // return redirect()->route('reset.links',$token)->with($notification);
+        }else{
+            return view('auth.forgotPasswordChange',['token'=>$token]);
+        }
+    }
+    public function forgotChangePassword(Request $request)
+    {
+        $validatedData = $request->validate([
+            'new_password' => 'required|min:5',
+        ],[
+            'new_password.min'=>'The new password must be at least 5 characters.',
+        ]);
+        if($request->get('new_password') == $request->get('new_confirm_password')){
+            $token = PasswordReset::where('token','=',$request->token)->first();
+            $user = User::where('email','=',$token->email)->first();
+            $user->password = bcrypt($request->get('new_password'));
+            $succss = $user->save();
+            if($succss){ 
+                
+                $notification = array(
+                    'message'=>'Password Change Successfull!',
+                    'alert-type'=>'success',
+                );
+                return Redirect()->route('/')->with($notification);
+            }
+        }else{
+            $notification = array(
+                'message'=>'New password and Confirm password does not match. Plesse try again.',
+                'alert-type'=>'error',
+            );
+            return Redirect()->back()->with($notification);
         }
     }
 }

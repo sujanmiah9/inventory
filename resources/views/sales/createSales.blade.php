@@ -146,13 +146,13 @@
 <div class="modal fade" id="modal-primary">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <div class="modal-header bg-light cardB">
+        <div class="modal-header card-header heading_h4 cardB">
             <h4 class="modal-title ">Add Customer</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close heading_h4" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body form_bg">
             <form action="{{route('store.customer')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
