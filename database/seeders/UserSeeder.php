@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' =>'Sujan Miah',
-            'email' => 'sujan@gmail.com',
+            'email' => 'sujanmiah931@gmail.com',
             'password' => bcrypt('12345'), // password
             'status' => 1,
             'parmanent_address'=>'Chaiterpara, kaligonj, gazipur',

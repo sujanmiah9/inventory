@@ -10,17 +10,23 @@
     <link href="{{asset('asset')}}/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <!-- THEME STYLES-->
-    <link href="{{asset('asset')}}/assets/css/main.css" rel="stylesheet" />
-        <!-- PAGE LEVEL STYLES-->
-    <link href="{{asset('asset')}}/assets/css/pages/auth-light.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .back{
+            background-image: url({{asset('upload/back1.jpg')}});
+        }
+        .shadow{
+        box-shadow: 0 .15rem 1.75rem 0 rgba(17, 1, 10, 0.9)!important;
+        }
+    </style>
 </head>
 
 <body class="back">
-    <div class="container shadow mt-5">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-header bg-orange">
+                <div class="card shadow">
+                    <div class="card-header bg-warning">
                         <h4 style="font-size: 25px; font-weight:bold; color:#fff;">Forgot Password</h4>
                     </div>
                     <div class="card-body">
@@ -28,10 +34,10 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Enter Email</label>
-                                <input type="email" name="email" class="form-control" placeholder="Enter Your Email Address to send Mail">
+                                <input type="email" name="email" class="form-control" placeholder="Enter Your Registry Email Address to send Mail">
                             </div>
                             <div class="text-right">
-                                <input type="submit" class="btn btn-primary" value="Send">
+                                <input type="submit" class="btn btn-primary" value="Send Link">
                             </div>
                         </form>
                     </div>

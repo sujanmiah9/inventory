@@ -10,18 +10,24 @@
     <link href="{{asset('asset')}}/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <!-- THEME STYLES-->
-    <link href="{{asset('asset')}}/assets/css/main.css" rel="stylesheet" />
-        <!-- PAGE LEVEL STYLES-->
-    <link href="{{asset('asset')}}/assets/css/pages/auth-light.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .back{
+            background-image: url({{asset('upload/back1.jpg')}});
+        }
+        .shadow{
+        box-shadow: 0 .15rem 1.75rem 0 rgba(17, 1, 10, 0.9)!important;
+        }
+    </style>
 </head>
 
-<body class="">
-    <div class="container">
+<body class="back">
+    <div class="container pt-5">
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-6 offset-md-3">
                 <div class="card">
-                    <div class="card-header bg-light cardB">
-                        <h4>Change Password</h4>
+                    <div class="card-header bg-dark cardB">
+                        <h4 class="text-light">Change Password</h4>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{route('forgot.changePassword')}}">
@@ -31,7 +37,7 @@
                                 <label for="password">New Password</label>
                                     <input id="new_password" type="password" class="form-control" name="new_password" autocomplete="current-password">
                                     @error('new_password')
-                                        <span class="span_star_message">
+                                        <span class="text-danger">
                                             {{$message}}
                                         </span>
                                     @enderror
@@ -43,7 +49,7 @@
                             <div class="form-group">
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-primary">
-                                        Update Password
+                                        Change Password
                                     </button>
                                 </div>
                             </div>

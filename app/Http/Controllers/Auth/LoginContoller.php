@@ -188,6 +188,7 @@ class LoginContoller extends Controller
         ];
         $reset = PasswordReset::create($data);
         Mail::to($request->email)->send(new ForgotPassword($reset));
+            return Redirect()->route('mail.successfull');
     }
 
     public function showPasswordForm($token)
@@ -195,11 +196,11 @@ class LoginContoller extends Controller
         $tokens = PasswordReset::where('token','=',$token)->exists();
 
         if(!$tokens){
-            // $notification = array(
-            //     'message'=>'Password reset token invalid. Please Try Again!',
-            //     'alert-type'=>'error',
-            // );
-            // return redirect()->route('reset.links',$token)->with($notification);
+            $notification = array(
+                'message'=>'Password reset token invalid. Please Try Again!',
+                'alert-type'=>'error',
+            );
+            return redirect()->route('invalid.token')->with($notification);
         }else{
             return view('auth.forgotPasswordChange',['token'=>$token]);
         }
@@ -217,7 +218,7 @@ class LoginContoller extends Controller
             $user->password = bcrypt($request->get('new_password'));
             $succss = $user->save();
             if($succss){ 
-                
+                $token->delete();
                 $notification = array(
                     'message'=>'Password Change Successfull!',
                     'alert-type'=>'success',
@@ -231,5 +232,14 @@ class LoginContoller extends Controller
             );
             return Redirect()->back()->with($notification);
         }
+    }
+
+    public function invalidToken()
+    {
+        return view('auth.tokenInvalid');
+    }
+    public function mailSuccess()
+    {
+        return view('auth.mailSentSuccess');
     }
 }
